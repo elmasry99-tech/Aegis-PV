@@ -1,66 +1,58 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Link from 'next/link';
+import { ROUTES, APP_NAME } from '@/lib/constants';
+import { HeroSection } from '@/features/landing/components/HeroSection';
+import { FeaturesSection } from '@/features/landing/components/FeaturesSection';
+import { PipelineSection } from '@/features/landing/components/PipelineSection';
+import { BenefitsSection } from '@/features/landing/components/BenefitsSection';
+import styles from './page.module.css';
 
-export default function Home() {
+export default function LandingPage() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className={styles.main}>
+      <div className={styles.bgGlow1} />
+
+      <header className={styles.header}>
+        <div className={styles.logo}>
+          Aegis<span>PV</span>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <nav className={styles.navLinks}>
+          <a href="#features" className={styles.navLink}>Features</a>
+          <a href="#how-it-works" className={styles.navLink}>Technology</a>
+          <a href="#benefits" className={styles.navLink}>Impact</a>
+        </nav>
+        <div className={styles.headerActions}>
+          <Link href={ROUTES.DASHBOARD} className={styles.btnPrimary}>View Dashboard</Link>
         </div>
-      </main>
-    </div>
+      </header>
+
+      <div className="container">
+        <HeroSection />
+        <div className={styles.bgGlow2} />
+        <FeaturesSection />
+        <PipelineSection />
+        <BenefitsSection />
+      </div>
+
+      <footer className={`${styles.footer} container`}>
+        <div className={styles.footerContent}>
+          <div className={styles.footerBrand}>
+            <div className={styles.logo}>Aegis<span>PV</span></div>
+            <p className={styles.footerDesc}>
+              The virtual solar technician — built specifically for Saudi Arabia and the GCC.
+            </p>
+          </div>
+          <div className={styles.footerLinks}>
+            <div className={styles.footerCol}>
+              <h4>Product</h4>
+              <Link href={ROUTES.DASHBOARD}>Dashboard</Link>
+              <a href="#features">Features</a>
+              <a href="#how-it-works">Technology</a>
+            </div>
+          </div>
+        </div>
+        <div className={styles.footerBottom}>
+          <div>&copy; 2026 {APP_NAME}. All rights reserved.</div>        </div>
+      </footer>
+    </main>
   );
 }

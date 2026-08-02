@@ -1,0 +1,321 @@
+.dashboard {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background: var(--color-bg-secondary);
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+}
+
+.select {
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-family: inherit;
+  outline: none;
+  cursor: pointer;
+}
+
+.select:focus {
+  border-color: var(--color-brand-cyan);
+}
+
+/* Stats Row */
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Layout Grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .statsRow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.card {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.cardTitle {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* AI Diagnosis Centerpiece */
+.diagnosisCard {
+  background: linear-gradient(180deg, rgba(16, 185, 129, 0.1) 0%, rgba(22, 22, 22, 0.8) 100%);
+  border: 1px solid var(--color-brand-emerald-glow);
+  box-shadow: 0 0 40px rgba(16, 185, 129, 0.1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.diagnosisCard.fault {
+  background: linear-gradient(180deg, rgba(239, 68, 68, 0.1) 0%, rgba(22, 22, 22, 0.8) 100%);
+  border-color: rgba(239, 68, 68, 0.3);
+  box-shadow: 0 0 40px rgba(239, 68, 68, 0.1);
+}
+
+.confidenceScore {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: var(--color-bg);
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: var(--color-brand-emerald);
+  border: 1px solid var(--color-brand-emerald-glow);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.diagnosisCard.fault .confidenceScore {
+  color: var(--color-brand-red);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.diagnosisResult {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+}
+
+.diagnosisCard.fault .diagnosisResult {
+  color: var(--color-brand-red);
+}
+.diagnosisCard:not(.fault) .diagnosisResult {
+  color: var(--color-brand-emerald);
+}
+
+.diagnosisAction {
+  color: var(--color-text-secondary);
+  font-size: 1.05rem;
+}
+
+.statValue {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+  line-height: 1;
+}
+
+.statUnit {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+}
+
+/* Chart Container */
+.chartContainer {
+  height: 280px;
+  width: 100%;
+  position: relative;
+}
+
+/* Pipeline */
+.pipeline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding: 1.5rem;
+  background: var(--color-bg);
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+}
+
+.pipeStep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.pipeStep.active {
+  color: var(--color-brand-emerald);
+}
+.diagnosisCard.fault + .pipeline .pipeStep.active {
+  color: var(--color-brand-red);
+}
+
+.pipeLine {
+  flex: 1;
+  height: 2px;
+  background: var(--color-border);
+  margin: 0 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.pipeLine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: var(--color-brand-emerald);
+  animation: dataFlow 1.5s linear infinite;
+}
+.diagnosisCard.fault + .pipeline .pipeLine::after {
+  background: var(--color-brand-red);
+}
+
+@keyframes dataFlow {
+  100% { left: 200%; }
+}
+
+/* Multi-site grid */
+.siteGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.siteCard {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  transition: border-color 0.2s ease;
+}
+
+.siteCard:hover {
+  border-color: var(--color-border-hover);
+}
+
+.siteHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.siteName {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.siteStatus {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.siteStatus.healthy { background: var(--color-brand-emerald); box-shadow: 0 0 8px var(--color-brand-emerald); }
+.siteStatus.warning { background: var(--color-brand-yellow); box-shadow: 0 0 8px var(--color-brand-yellow); }
+.siteStatus.critical { background: var(--color-brand-red); box-shadow: 0 0 8px var(--color-brand-red); }
+
+.siteMetrics {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+/* Nav inside dashboard */
+.dashNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  z-index: 100;
+}
+
+.logo {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+.logo span {
+  color: var(--color-brand-emerald);
+}
+
+.navLinks {
+  display: flex;
+  gap: 2rem;
+}
+.navLink {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.navLink.active {
+  color: var(--color-text-primary);
+}
