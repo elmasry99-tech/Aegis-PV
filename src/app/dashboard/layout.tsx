@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { isAuthenticated } from '@/lib/auth';
 import { ScenarioProvider } from '@/shared/contexts/ScenarioContext';
 import { DashboardSidebar } from '@/features/dashboard/components/DashboardSidebar';
@@ -11,13 +11,16 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
   const router = useRouter();
 
   useEffect(() => {
-    if (!isAuthenticated()) {
+    if (pathname !== '/dashboard' && !isAuthenticated()) {
       router.push('/login');
     }
-  }, [router]);
+  }, [pathname, router]);
+
+  const isPreview = pathname === '/dashboard';
 
   return (
     <ScenarioProvider>
@@ -27,10 +30,10 @@ export default function DashboardLayout({
           minHeight: '100vh',
         }}
       >
-        <DashboardSidebar />
+        {!isPreview && <DashboardSidebar />}
         <main
           style={{
-            marginLeft: 220,
+            marginLeft: isPreview ? 0 : 220,
             flex: 1,
             minHeight: '100vh',
           }}

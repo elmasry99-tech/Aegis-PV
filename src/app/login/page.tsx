@@ -36,7 +36,7 @@ export default function LoginPage() {
     <div
       style={{
         minHeight: '100vh',
-        background: '#0a0a0a',
+        background: '#ffffff',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -65,7 +65,7 @@ export default function LoginPage() {
           position: 'absolute',
           inset: 0,
           backgroundImage:
-            'radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)',
+            'radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px)',
           backgroundSize: '28px 28px',
           pointerEvents: 'none',
         }}
@@ -96,10 +96,11 @@ export default function LoginPage() {
           zIndex: 10,
           width: '100%',
           maxWidth: 420,
-          background: 'rgba(22,22,22,0.8)',
+          background: 'rgba(255,255,255,0.8)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
-          border: '1px solid rgba(255,255,255,0.1)',
+          border: '1px solid rgba(0,0,0,0.08)',
+          boxShadow: '0 20px 60px rgba(0,0,0,0.1)',
           borderRadius: 24,
           padding: 48,
           margin: '0 16px',
@@ -113,7 +114,7 @@ export default function LoginPage() {
               fontSize: '2rem',
               fontWeight: 700,
               letterSpacing: '-0.04em',
-              color: '#ffffff',
+              color: '#18181b',
             }}
           >
             Aegis
@@ -125,7 +126,7 @@ export default function LoginPage() {
         <p
           style={{
             textAlign: 'center',
-            color: '#a1a1aa',
+            color: '#52525b',
             fontSize: '0.875rem',
             marginBottom: 20,
           }}
@@ -193,11 +194,11 @@ export default function LoginPage() {
               required
               style={{
                 width: '100%',
-                background: 'rgba(255,255,255,0.05)',
-                border: `1px solid ${userFocused ? '#10b981' : 'rgba(255,255,255,0.1)'}`,
+                background: 'rgba(0,0,0,0.03)',
+                border: `1px solid ${userFocused ? '#10b981' : 'rgba(0,0,0,0.1)'}`,
                 borderRadius: 12,
                 padding: '12px 16px 12px 42px',
-                color: '#ffffff',
+                color: '#18181b',
                 fontSize: '0.9rem',
                 outline: 'none',
                 transition: 'border-color 0.2s ease',
@@ -233,11 +234,11 @@ export default function LoginPage() {
               required
               style={{
                 width: '100%',
-                background: 'rgba(255,255,255,0.05)',
-                border: `1px solid ${passFocused ? '#10b981' : 'rgba(255,255,255,0.1)'}`,
+                background: 'rgba(0,0,0,0.03)',
+                border: `1px solid ${passFocused ? '#10b981' : 'rgba(0,0,0,0.1)'}`,
                 borderRadius: 12,
                 padding: '12px 16px 12px 42px',
-                color: '#ffffff',
+                color: '#18181b',
                 fontSize: '0.9rem',
                 outline: 'none',
                 transition: 'border-color 0.2s ease',

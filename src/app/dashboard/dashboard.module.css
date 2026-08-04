@@ -98,9 +98,9 @@
 
 /* AI Diagnosis Centerpiece */
 .diagnosisCard {
-  background: linear-gradient(180deg, rgba(16, 185, 129, 0.1) 0%, rgba(22, 22, 22, 0.8) 100%);
+  background: linear-gradient(180deg, rgba(16, 185, 129, 0.1) 0%, rgba(244, 244, 245, 0.9) 100%);
   border: 1px solid var(--color-brand-emerald-glow);
-  box-shadow: 0 0 40px rgba(16, 185, 129, 0.1);
+  box-shadow: 0 0 40px rgba(16, 185, 129, 0.08);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -110,9 +110,9 @@
 }
 
 .diagnosisCard.fault {
-  background: linear-gradient(180deg, rgba(239, 68, 68, 0.1) 0%, rgba(22, 22, 22, 0.8) 100%);
+  background: linear-gradient(180deg, rgba(239, 68, 68, 0.1) 0%, rgba(244, 244, 245, 0.9) 100%);
   border-color: rgba(239, 68, 68, 0.3);
-  box-shadow: 0 0 40px rgba(239, 68, 68, 0.1);
+  box-shadow: 0 0 40px rgba(239, 68, 68, 0.08);
 }
 
 .confidenceScore {
@@ -285,7 +285,7 @@
   left: 0;
   width: 100%;
   height: var(--header-height);
-  background: rgba(10, 10, 10, 0.8);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-border);
   display: flex;

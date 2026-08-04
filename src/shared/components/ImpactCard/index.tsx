@@ -28,7 +28,7 @@ export function ImpactCard({ stat, delay = 0, className }: ImpactCardProps) {
       <div className={cn('text-6xl font-bold leading-none mb-4', COLOR_MAP[stat.color])}>
         {stat.value}
       </div>
-      <h3 className="text-lg font-semibold text-white mb-2">{stat.label}</h3>
+      <h3 className="text-lg font-semibold text-text-primary mb-2">{stat.label}</h3>
       <p className="text-sm text-text-secondary leading-relaxed">{stat.description}</p>
     </motion.div>
   );

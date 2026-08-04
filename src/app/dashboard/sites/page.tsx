@@ -121,13 +121,13 @@ export default function SitesPage() {
               fontFamily: 'var(--font-outfit), sans-serif',
               fontSize: '1.75rem',
               fontWeight: 700,
-              color: '#fff',
+              color: '#18181b',
               marginBottom: '0.4rem',
             }}
           >
             Site Monitoring
           </h1>
-          <p style={{ color: '#a1a1aa', fontSize: '0.9rem' }}>
+          <p style={{ color: '#52525b', fontSize: '0.9rem' }}>
             Riyadh Residential Portfolio — 5 installations
           </p>
         </div>
@@ -158,7 +158,7 @@ export default function SitesPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
               style={{
-                background: '#161616',
+                background: '#f4f4f5',
                 borderRadius: 16,
                 padding: '1.25rem',
                 border: `1px solid ${STATUS_GLOW[site.status]}`,
@@ -183,7 +183,7 @@ export default function SitesPage() {
                   style={{
                     fontWeight: 700,
                     fontSize: '1rem',
-                    color: '#fff',
+                    color: '#18181b',
                     fontFamily: 'var(--font-outfit), sans-serif',
                   }}
                 >
@@ -191,8 +191,8 @@ export default function SitesPage() {
                 </span>
                 <span
                   style={{
-                    background: 'rgba(255,255,255,0.06)',
-                    border: '1px solid rgba(255,255,255,0.1)',
+                    background: 'rgba(0,0,0,0.06)',
+                    border: '1px solid rgba(0,0,0,0.1)',
                     borderRadius: 999,
                     padding: '0.15rem 0.6rem',
                     fontSize: '0.72rem',
@@ -216,8 +216,8 @@ export default function SitesPage() {
                   marginBottom: '0.75rem',
                 }}
               >
-                <span style={{ color: '#a1a1aa', fontSize: '0.8rem' }}>Output</span>
-                <span style={{ color: '#fff', fontSize: '0.85rem', fontWeight: 600 }}>
+                <span style={{ color: '#52525b', fontSize: '0.8rem' }}>Output</span>
+                <span style={{ color: '#18181b', fontSize: '0.85rem', fontWeight: 600 }}>
                   {siteOutput} / {expected} MW
                 </span>
               </div>
@@ -256,14 +256,14 @@ export default function SitesPage() {
           display: 'flex',
           gap: '1.25rem',
           flexWrap: 'wrap',
-          background: '#161616',
-          border: '1px solid rgba(255,255,255,0.08)',
+          background: '#f4f4f5',
+          border: '1px solid rgba(0,0,0,0.08)',
           borderRadius: 16,
           padding: '1.25rem 1.5rem',
         }}
       >
         {[
-          { label: 'Total Sites', value: sites.length, color: '#fff' },
+          { label: 'Total Sites', value: sites.length, color: '#18181b' },
           { label: 'Healthy', value: counts.healthy, color: '#10b981' },
           { label: 'Warnings', value: counts.warning, color: '#eab308' },
           { label: 'Critical', value: counts.critical, color: '#ef4444' },
@@ -277,7 +277,7 @@ export default function SitesPage() {
               gap: '0.25rem',
             }}
           >
-            <span style={{ color: '#a1a1aa', fontSize: '0.78rem', fontWeight: 500 }}>
+            <span style={{ color: '#52525b', fontSize: '0.78rem', fontWeight: 500 }}>
               {item.label}
             </span>
             <span

@@ -15,7 +15,7 @@
   justify-content: space-between;
   padding: 0 4rem;
   z-index: 100;
-  background: rgba(10, 10, 10, 0.7);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-border);
@@ -72,7 +72,7 @@
 }
 
 .btnSecondary {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.03);
   color: var(--color-text-primary);
   border: 1px solid var(--color-border);
   padding: 0.6rem 1.25rem;
@@ -84,7 +84,7 @@
 }
 
 .btnSecondary:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.06);
   border-color: var(--color-border-hover);
 }
 
@@ -255,7 +255,7 @@
   left: -100%;
   width: 50%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.05), transparent);
   animation: shimmer 3s infinite;
 }
 
@@ -322,7 +322,7 @@
 
 .featureCard:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
   border-color: var(--color-border-hover);
 }
 
@@ -330,7 +330,7 @@
   width: 56px;
   height: 56px;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.03);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -501,5 +501,5 @@
   color: var(--color-text-muted);
   font-size: 0.85rem;
   padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }

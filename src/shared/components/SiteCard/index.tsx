@@ -16,7 +16,7 @@ export function SiteCard({ site, className }: SiteCardProps) {
       )}
     >
       <div className="flex items-center justify-between mb-2">
-        <span className="text-sm font-semibold text-white">{site.name}</span>
+        <span className="text-sm font-semibold text-text-primary">{site.name}</span>
         <StatusBadge status={site.status} />
       </div>
       <div className="flex items-center justify-between text-sm text-text-secondary">

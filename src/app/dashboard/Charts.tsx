@@ -31,7 +31,7 @@ const options = {
     legend: {
       position: 'top' as const,
       labels: {
-        color: '#a1a1aa',
+        color: '#52525b',
         font: {
           family: "'Inter', sans-serif",
         },
@@ -40,10 +40,10 @@ const options = {
       }
     },
     tooltip: {
-      backgroundColor: 'rgba(22, 22, 22, 0.9)',
-      titleColor: '#fff',
-      bodyColor: '#a1a1aa',
-      borderColor: 'rgba(255,255,255,0.1)',
+      backgroundColor: 'rgba(255, 255, 255, 0.95)',
+      titleColor: '#0a0a0a',
+      bodyColor: '#52525b',
+      borderColor: 'rgba(0,0,0,0.1)',
       borderWidth: 1,
       padding: 12,
       displayColors: false,
@@ -52,7 +52,7 @@ const options = {
   scales: {
     y: {
       grid: {
-        color: 'rgba(255, 255, 255, 0.05)',
+        color: 'rgba(0, 0, 0, 0.06)',
       },
       ticks: {
         color: '#71717a',
@@ -100,8 +100,8 @@ export function PowerOutputChart({ scenario }: { scenario: string }) {
         fill: true,
         label: 'Expected Output (kW)',
         data: expectedData,
-        borderColor: 'rgba(255, 255, 255, 0.2)',
-        backgroundColor: 'rgba(255, 255, 255, 0.02)',
+        borderColor: 'rgba(0, 0, 0, 0.2)',
+        backgroundColor: 'rgba(0, 0, 0, 0.02)',
         borderDash: [5, 5],
         pointRadius: 0,
         tension: 0.4,

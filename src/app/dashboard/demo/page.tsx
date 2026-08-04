@@ -119,13 +119,13 @@ export default function DemoPage() {
             fontFamily: 'var(--font-outfit), sans-serif',
             fontSize: '1.75rem',
             fontWeight: 700,
-            color: '#fff',
+            color: '#18181b',
             marginBottom: '0.4rem',
           }}
         >
           Demo Control Panel
         </h1>
-        <p style={{ color: '#a1a1aa', fontSize: '0.9rem' }}>
+        <p style={{ color: '#52525b', fontSize: '0.9rem' }}>
           Simulate live telemetry for any scenario
         </p>
       </div>
@@ -150,8 +150,8 @@ export default function DemoPage() {
                 transition={{ duration: 0.35, delay: i * 0.07 }}
                 onClick={() => setScenario(cfg.key)}
                 style={{
-                  background: isActive ? cfg.tint : '#161616',
-                  border: `1px solid ${isActive ? cfg.border : 'rgba(255,255,255,0.08)'}`,
+                  background: isActive ? cfg.tint : '#f4f4f5',
+                  border: `1px solid ${isActive ? cfg.border : 'rgba(0,0,0,0.08)'}`,
                   borderRadius: 14,
                   padding: '1.1rem 1.25rem',
                   cursor: 'pointer',
@@ -191,7 +191,7 @@ export default function DemoPage() {
                         fontFamily: 'var(--font-outfit), sans-serif',
                         fontWeight: 600,
                         fontSize: '0.95rem',
-                        color: isActive ? '#fff' : '#a1a1aa',
+                        color: isActive ? '#18181b' : '#52525b',
                         transition: 'color 0.2s ease',
                       }}
                     >
@@ -231,9 +231,9 @@ export default function DemoPage() {
 
         <div
           style={{
-            background: '#161616',
+            background: '#f4f4f5',
             borderRadius: 14,
-            border: '1px solid rgba(255,255,255,0.08)',
+            border: '1px solid rgba(0,0,0,0.08)',
             padding: '1.25rem',
             display: 'flex',
             flexDirection: 'column',
@@ -263,7 +263,7 @@ export default function DemoPage() {
                 fontFamily: 'var(--font-outfit), sans-serif',
                 fontWeight: 600,
                 fontSize: '0.9rem',
-                color: '#fff',
+                color: '#18181b',
               }}
             >
               Live Telemetry Feed
@@ -295,12 +295,12 @@ export default function DemoPage() {
                       alignItems: 'center',
                       gap: '0.6rem',
                       padding: '0.35rem 0.6rem',
-                      background: 'rgba(255,255,255,0.03)',
+                      background: 'rgba(0,0,0,0.03)',
                       borderRadius: 6,
                     }}
                   >
                     <span style={{ color: '#71717a', flexShrink: 0 }}>[{entry.time}]</span>
-                    <span style={{ color: '#e4e4e7', flex: 1 }}>{entry.msg}</span>
+                    <span style={{ color: '#3f3f46', flex: 1 }}>{entry.msg}</span>
                     <span
                       style={{
                         color: symColor(entry.ok),
@@ -327,7 +327,7 @@ export default function DemoPage() {
         onDragLeave={() => setIsDragOver(false)}
         onDrop={(e) => { e.preventDefault(); setIsDragOver(false); }}
         style={{
-          border: `2px dashed ${isDragOver ? '#10b981' : 'rgba(255,255,255,0.2)'}`,
+          border: `2px dashed ${isDragOver ? '#10b981' : 'rgba(0,0,0,0.2)'}`,
           borderRadius: 16,
           padding: '2.5rem',
           display: 'flex',
@@ -356,7 +356,7 @@ export default function DemoPage() {
             fontFamily: 'var(--font-outfit), sans-serif',
             fontSize: '1rem',
             fontWeight: 600,
-            color: '#fff',
+            color: '#18181b',
           }}
         >
           Drop CSV file here or click to upload

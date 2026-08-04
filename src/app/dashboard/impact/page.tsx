@@ -60,13 +60,13 @@ function CustomTooltip({ active, payload, label }: { active?: boolean; payload?:
   return (
     <div
       style={{
-        background: '#1a1a1a',
-        border: '1px solid rgba(255,255,255,0.12)',
+        background: '#f4f4f5',
+        border: '1px solid rgba(0,0,0,0.12)',
         borderRadius: 10,
         padding: '0.75rem 1rem',
       }}
     >
-      <p style={{ color: '#a1a1aa', fontSize: '0.8rem', marginBottom: '0.4rem' }}>{label}</p>
+      <p style={{ color: '#52525b', fontSize: '0.8rem', marginBottom: '0.4rem' }}>{label}</p>
       {payload.map((p) => (
         <p key={p.name} style={{ color: p.color, fontSize: '0.85rem', fontWeight: 600 }}>
           {p.name}: {p.value} kWh
@@ -102,13 +102,13 @@ export default function ImpactPage() {
               fontFamily: 'var(--font-outfit), sans-serif',
               fontSize: '1.75rem',
               fontWeight: 700,
-              color: '#fff',
+              color: '#18181b',
               marginBottom: '0.4rem',
             }}
           >
             Impact & Sustainability
           </h1>
-          <p style={{ color: '#a1a1aa', fontSize: '0.9rem' }}>
+          <p style={{ color: '#52525b', fontSize: '0.9rem' }}>
             AI-driven performance recovery results
           </p>
         </div>
@@ -130,7 +130,7 @@ export default function ImpactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: i * 0.07 }}
             style={{
-              background: '#161616',
+              background: '#f4f4f5',
               borderRadius: 16,
               padding: '1.25rem',
               borderTop: `2px solid ${metric.color}`,
@@ -150,7 +150,7 @@ export default function ImpactPage() {
               }}
             >
               {ICON_MAP[metric.icon]}
-              <span style={{ color: '#a1a1aa', fontSize: '0.78rem', fontWeight: 500 }}>
+              <span style={{ color: '#52525b', fontSize: '0.78rem', fontWeight: 500 }}>
                 {metric.label}
               </span>
             </div>
@@ -160,7 +160,7 @@ export default function ImpactPage() {
                   fontFamily: 'var(--font-outfit), sans-serif',
                   fontSize: '2rem',
                   fontWeight: 700,
-                  color: '#fff',
+                  color: '#18181b',
                   lineHeight: 1,
                 }}
               >
@@ -180,10 +180,10 @@ export default function ImpactPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.4 }}
         style={{
-          background: '#161616',
+          background: '#f4f4f5',
           borderRadius: 16,
           padding: '1.5rem',
-          border: '1px solid rgba(255,255,255,0.08)',
+          border: '1px solid rgba(0,0,0,0.08)',
           marginBottom: '2rem',
         }}
       >
@@ -192,7 +192,7 @@ export default function ImpactPage() {
             fontFamily: 'var(--font-outfit), sans-serif',
             fontSize: '1rem',
             fontWeight: 600,
-            color: '#fff',
+            color: '#18181b',
             marginBottom: '1.25rem',
           }}
         >
@@ -205,25 +205,25 @@ export default function ImpactPage() {
               margin={{ top: 4, right: 8, bottom: 0, left: 0 }}
               barCategoryGap="30%"
             >
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.05)" vertical={false} />
               <XAxis
                 dataKey="month"
-                tick={{ fill: '#a1a1aa', fontSize: 12 }}
+                tick={{ fill: '#52525b', fontSize: 12 }}
                 axisLine={false}
                 tickLine={false}
               />
               <YAxis
-                tick={{ fill: '#a1a1aa', fontSize: 12 }}
+                tick={{ fill: '#52525b', fontSize: 12 }}
                 axisLine={false}
                 tickLine={false}
                 width={40}
               />
-              <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.04)' }} />
+              <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(0,0,0,0.04)' }} />
               <Legend
-                wrapperStyle={{ fontSize: 12, color: '#a1a1aa', paddingTop: 12 }}
+                wrapperStyle={{ fontSize: 12, color: '#52525b', paddingTop: 12 }}
               />
               <Bar dataKey="withAI" name="With AI" fill="#10b981" radius={[4, 4, 0, 0]} />
-              <Bar dataKey="withoutAI" name="Without AI" fill="rgba(255,255,255,0.15)" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="withoutAI" name="Without AI" fill="rgba(0,0,0,0.15)" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -234,10 +234,10 @@ export default function ImpactPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.55 }}
         style={{
-          background: '#161616',
+          background: '#f4f4f5',
           borderRadius: 16,
           padding: '1.5rem',
-          border: '1px solid rgba(255,255,255,0.08)',
+          border: '1px solid rgba(0,0,0,0.08)',
           display: 'flex',
           flexDirection: 'column',
           gap: '1.25rem',
@@ -253,17 +253,17 @@ export default function ImpactPage() {
                 marginBottom: '0.5rem',
               }}
             >
-              <span style={{ color: '#a1a1aa', fontSize: '0.85rem', fontWeight: 500 }}>
+              <span style={{ color: '#52525b', fontSize: '0.85rem', fontWeight: 500 }}>
                 {bar.label}
               </span>
-              <span style={{ color: '#fff', fontSize: '0.85rem', fontWeight: 700 }}>
+              <span style={{ color: '#18181b', fontSize: '0.85rem', fontWeight: 700 }}>
                 {bar.pct}%
               </span>
             </div>
             <div
               style={{
                 height: 6,
-                background: 'rgba(255,255,255,0.07)',
+                background: 'rgba(0,0,0,0.07)',
                 borderRadius: 999,
                 overflow: 'hidden',
               }}

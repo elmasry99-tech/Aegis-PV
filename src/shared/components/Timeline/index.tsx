@@ -29,7 +29,7 @@ export function Timeline({ entries, className }: TimelineProps) {
               {ICON_MAP[entry.icon]}
             </div>
             <div>
-              <p className="text-sm font-semibold text-white">{entry.title}</p>
+              <p className="text-sm font-semibold text-text-primary">{entry.title}</p>
               <p className="text-xs text-text-secondary">{entry.description}</p>
             </div>
           </div>

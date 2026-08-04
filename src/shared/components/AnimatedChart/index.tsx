@@ -48,7 +48,7 @@ function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
       className="rounded-xl border border-border-default bg-bg-secondary px-4 py-3 text-sm shadow-xl"
       style={{ borderColor: COLORS.border }}
     >
-      <p className="font-medium text-white mb-1">{label}</p>
+      <p className="font-medium text-text-primary mb-1">{label}</p>
       {payload.map((entry) => (
         <p key={String(entry.dataKey)} style={{ color: entry.color }}>
           {entry.name}: {entry.value} kW

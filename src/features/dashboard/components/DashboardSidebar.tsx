@@ -43,10 +43,10 @@ export function DashboardSidebar() {
         left: 0,
         width: 220,
         height: '100vh',
-        background: 'rgba(10,10,10,0.95)',
+        background: 'rgba(255,255,255,0.95)',
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
-        borderRight: '1px solid rgba(255,255,255,0.08)',
+        borderRight: '1px solid rgba(0,0,0,0.08)',
         display: 'flex',
         flexDirection: 'column',
         zIndex: 200,
@@ -56,7 +56,7 @@ export function DashboardSidebar() {
       <div
         style={{
           padding: '28px 24px 24px',
-          borderBottom: '1px solid rgba(255,255,255,0.06)',
+          borderBottom: '1px solid rgba(0,0,0,0.06)',
         }}
       >
         <span
@@ -65,7 +65,7 @@ export function DashboardSidebar() {
             fontSize: '1.4rem',
             fontWeight: 700,
             letterSpacing: '-0.04em',
-            color: '#ffffff',
+            color: '#18181b',
             userSelect: 'none',
           }}
         >
@@ -92,19 +92,19 @@ export function DashboardSidebar() {
                 fontWeight: 500,
                 textDecoration: 'none',
                 transition: 'background 0.15s ease, color 0.15s ease',
-                color: isActive ? '#ffffff' : '#a1a1aa',
+                color: isActive ? '#18181b' : '#52525b',
                 background: isActive ? 'rgba(16,185,129,0.1)' : 'transparent',
                 borderLeft: isActive ? '2px solid #10b981' : '2px solid transparent',
               }}
               onMouseEnter={(e) => {
                 if (!isActive) {
-                  (e.currentTarget as HTMLAnchorElement).style.color = '#ffffff';
-                  (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(255,255,255,0.05)';
+                  (e.currentTarget as HTMLAnchorElement).style.color = '#18181b';
+                  (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(0,0,0,0.05)';
                 }
               }}
               onMouseLeave={(e) => {
                 if (!isActive) {
-                  (e.currentTarget as HTMLAnchorElement).style.color = '#a1a1aa';
+                  (e.currentTarget as HTMLAnchorElement).style.color = '#52525b';
                   (e.currentTarget as HTMLAnchorElement).style.background = 'transparent';
                 }
               }}
@@ -117,7 +117,7 @@ export function DashboardSidebar() {
       </nav>
 
       {/* Logout */}
-      <div style={{ padding: '12px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+      <div style={{ padding: '12px', borderTop: '1px solid rgba(0,0,0,0.06)' }}>
         <button
           onClick={handleLogout}
           style={{
@@ -129,7 +129,7 @@ export function DashboardSidebar() {
             borderRadius: 8,
             fontSize: '0.875rem',
             fontWeight: 500,
-            color: '#a1a1aa',
+            color: '#52525b',
             background: 'transparent',
             border: 'none',
             cursor: 'pointer',
@@ -137,11 +137,11 @@ export function DashboardSidebar() {
             textAlign: 'left',
           }}
           onMouseEnter={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.color = '#ffffff';
+            (e.currentTarget as HTMLButtonElement).style.color = '#18181b';
             (e.currentTarget as HTMLButtonElement).style.background = 'rgba(239,68,68,0.1)';
           }}
           onMouseLeave={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.color = '#a1a1aa';
+            (e.currentTarget as HTMLButtonElement).style.color = '#52525b';
             (e.currentTarget as HTMLButtonElement).style.background = 'transparent';
           }}
         >

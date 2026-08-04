@@ -28,7 +28,7 @@ export function MetricCard({ label, value, unit, icon, className, delay = 0 }: M
         {icon}
         <span>{label}</span>
       </div>
-      <div className="text-3xl font-bold font-heading tracking-tight text-white">
+      <div className="text-3xl font-bold font-heading tracking-tight text-text-primary">
         {value}
         {unit && (
           <span className="text-base font-normal text-text-muted ml-1">{unit}</span>

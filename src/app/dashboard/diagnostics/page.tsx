@@ -28,8 +28,8 @@ import { FAULT_HISTORY } from '@/lib/mock-data/history';
 import type { FaultHistoryEntry } from '@/shared/types';
 
 const CARD_STYLE: React.CSSProperties = {
-  background: '#161616',
-  border: '1px solid rgba(255,255,255,0.1)',
+  background: '#f4f4f5',
+  border: '1px solid rgba(0,0,0,0.1)',
   borderRadius: 16,
   padding: '1.5rem',
 };
@@ -60,14 +60,14 @@ function OutputTooltip({ active, payload, label }: CustomTooltipProps) {
   return (
     <div
       style={{
-        background: '#1a1a1a',
-        border: '1px solid rgba(255,255,255,0.1)',
+        background: '#f4f4f5',
+        border: '1px solid rgba(0,0,0,0.1)',
         borderRadius: 8,
         padding: '8px 12px',
         fontSize: 12,
       }}
     >
-      <p style={{ color: '#fff', fontWeight: 600, marginBottom: 4 }}>{label}</p>
+      <p style={{ color: '#18181b', fontWeight: 600, marginBottom: 4 }}>{label}</p>
       {payload.map((e) => (
         <p key={String(e.dataKey)} style={{ color: e.color, margin: '2px 0' }}>
           {e.name}: {e.value} kW
@@ -82,14 +82,14 @@ function ClimateTooltip({ active, payload, label }: CustomTooltipProps) {
   return (
     <div
       style={{
-        background: '#1a1a1a',
-        border: '1px solid rgba(255,255,255,0.1)',
+        background: '#f4f4f5',
+        border: '1px solid rgba(0,0,0,0.1)',
         borderRadius: 8,
         padding: '8px 12px',
         fontSize: 12,
       }}
     >
-      <p style={{ color: '#fff', fontWeight: 600, marginBottom: 4 }}>{label}</p>
+      <p style={{ color: '#18181b', fontWeight: 600, marginBottom: 4 }}>{label}</p>
       {payload.map((e) => (
         <p key={String(e.dataKey)} style={{ color: e.color, margin: '2px 0' }}>
           {e.name}: {e.value}
@@ -166,7 +166,7 @@ function TimelineEntry({ entry, index }: { entry: FaultHistoryEntry; index: numb
               width: 1,
               flex: 1,
               minHeight: 32,
-              background: 'rgba(255,255,255,0.08)',
+              background: 'rgba(0,0,0,0.08)',
               marginTop: 4,
             }}
           />
@@ -176,7 +176,7 @@ function TimelineEntry({ entry, index }: { entry: FaultHistoryEntry; index: numb
       <div
         style={{
           flex: 1,
-          background: 'rgba(255,255,255,0.03)',
+          background: 'rgba(0,0,0,0.03)',
           border: `1px solid ${cfg.border}`,
           borderRadius: 10,
           padding: '10px 14px',
@@ -198,7 +198,7 @@ function TimelineEntry({ entry, index }: { entry: FaultHistoryEntry; index: numb
           {FAULT_ICONS[entry.icon] ?? <AlertTriangle size={16} />}
         </div>
         <div style={{ flex: 1 }}>
-          <p style={{ color: '#fff', fontWeight: 600, fontSize: '0.9rem', marginBottom: 2 }}>{entry.title}</p>
+          <p style={{ color: '#18181b', fontWeight: 600, fontSize: '0.9rem', marginBottom: 2 }}>{entry.title}</p>
           <p style={{ color: '#71717a', fontSize: '0.8rem' }}>{entry.description}</p>
         </div>
         <span
@@ -273,14 +273,14 @@ export default function DiagnosticsPage() {
             style={{
               fontSize: '2rem',
               fontWeight: 700,
-              color: '#fff',
+              color: '#18181b',
               marginBottom: '0.4rem',
               letterSpacing: '-0.03em',
             }}
           >
             Diagnostics
           </h1>
-          <p style={{ color: '#a1a1aa', fontSize: '1rem' }}>
+          <p style={{ color: '#52525b', fontSize: '1rem' }}>
             AI-powered fault detection &amp; classification
           </p>
         </div>
@@ -308,7 +308,7 @@ export default function DiagnosticsPage() {
               alignItems: 'center',
               gap: 8,
               marginBottom: '1.25rem',
-              color: '#a1a1aa',
+              color: '#52525b',
               fontSize: '1.05rem',
               fontWeight: 600,
             }}
@@ -320,7 +320,7 @@ export default function DiagnosticsPage() {
           <div style={{ height: 300, width: '100%' }}>
             <ResponsiveContainer width="100%" height="100%">
               <ComposedChart data={outputData} margin={{ top: 8, right: 8, left: -16, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.05)" vertical={false} />
                 <XAxis
                   dataKey="time"
                   tick={{ fill: '#71717a', fontSize: 12 }}
@@ -335,7 +335,7 @@ export default function DiagnosticsPage() {
                 />
                 <Tooltip content={<OutputTooltip />} />
                 <Legend
-                  wrapperStyle={{ color: '#a1a1aa', fontSize: 12, paddingTop: 8 }}
+                  wrapperStyle={{ color: '#52525b', fontSize: 12, paddingTop: 8 }}
                   iconType="plainline"
                 />
                 {hasLoss && lossStart && lossEnd && (
@@ -412,7 +412,7 @@ export default function DiagnosticsPage() {
               alignItems: 'center',
               gap: 8,
               marginBottom: '1.25rem',
-              color: '#a1a1aa',
+              color: '#52525b',
               fontSize: '1.05rem',
               fontWeight: 600,
             }}
@@ -424,7 +424,7 @@ export default function DiagnosticsPage() {
           <div style={{ height: 250, width: '100%' }}>
             <ResponsiveContainer width="100%" height="100%">
               <ComposedChart data={CLIMATE_DATA} margin={{ top: 8, right: 20, left: -16, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.05)" vertical={false} />
                 <XAxis
                   dataKey="time"
                   tick={{ fill: '#71717a', fontSize: 11 }}
@@ -449,7 +449,7 @@ export default function DiagnosticsPage() {
                 />
                 <Tooltip content={<ClimateTooltip />} />
                 <Legend
-                  wrapperStyle={{ color: '#a1a1aa', fontSize: 12, paddingTop: 8 }}
+                  wrapperStyle={{ color: '#52525b', fontSize: 12, paddingTop: 8 }}
                   iconType="plainline"
                 />
                 <Line
@@ -508,12 +508,12 @@ export default function DiagnosticsPage() {
               alignItems: 'center',
               gap: 8,
               marginBottom: '1.5rem',
-              color: '#a1a1aa',
+              color: '#52525b',
               fontSize: '1.05rem',
               fontWeight: 600,
             }}
           >
-            <Clock size={18} style={{ color: '#a1a1aa' }} />
+            <Clock size={18} style={{ color: '#52525b' }} />
             Fault Event Log
           </div>
 

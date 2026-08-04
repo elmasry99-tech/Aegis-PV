@@ -33,7 +33,7 @@ export function PipelineSection() {
           >
             <span className={styles.pipelineIcon}>{ICON_MAP[step.id]}</span>
             <div className={styles.pipelineLabel}>{step.label}</div>
-            <p style={{ fontSize: '0.8rem', color: '#ffffff', marginTop: '0.5rem' }}>
+            <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', marginTop: '0.5rem' }}>
               {step.description}
             </p>
           </motion.div>

@@ -3,6 +3,7 @@ export const APP_TAGLINE = 'AI-Powered Solar Intelligence for GCC';
 
 export const ROUTES = {
   HOME: '/',
+  LOGIN: '/login',
   DASHBOARD: '/dashboard',
   SITES: '/sites',
   REPORTS: '/reports',

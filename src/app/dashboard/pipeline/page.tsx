@@ -112,7 +112,7 @@ function FlowConnector({ active }: { active: boolean }) {
           height: '100%',
           background: active
             ? 'linear-gradient(180deg, rgba(16,185,129,0.6) 0%, rgba(6,182,212,0.3) 100%)'
-            : 'rgba(255,255,255,0.08)',
+            : 'rgba(0,0,0,0.08)',
           position: 'relative',
           overflow: 'hidden',
         }}
@@ -166,13 +166,13 @@ function StageCard({
     ? 'rgba(16,185,129,0.5)'
     : isCompleted
     ? 'rgba(16,185,129,0.2)'
-    : 'rgba(255,255,255,0.08)';
+    : 'rgba(0,0,0,0.08)';
 
   const bg = isActive
     ? 'rgba(16,185,129,0.06)'
     : isCompleted
     ? 'rgba(16,185,129,0.02)'
-    : '#1a1a1a';
+    : '#f4f4f5';
 
   const boxShadow = isActive
     ? '0 0 0 1px rgba(16,185,129,0.3), 0 4px 24px rgba(16,185,129,0.08)'
@@ -229,11 +229,11 @@ function StageCard({
               ? 'rgba(16,185,129,0.15)'
               : isActive
               ? 'rgba(16,185,129,0.2)'
-              : 'rgba(255,255,255,0.05)',
+              : 'rgba(0,0,0,0.05)',
             border: `1px solid ${
               isCompleted || isActive
                 ? 'rgba(16,185,129,0.4)'
-                : 'rgba(255,255,255,0.1)'
+                : 'rgba(0,0,0,0.1)'
             }`,
             transition: 'all 0.25s ease',
           }}
@@ -265,9 +265,9 @@ function StageCard({
             justifyContent: 'center',
             background: isActive
               ? 'rgba(16,185,129,0.12)'
-              : 'rgba(255,255,255,0.04)',
+              : 'rgba(0,0,0,0.04)',
             border: `1px solid ${
-              isActive ? 'rgba(16,185,129,0.25)' : 'rgba(255,255,255,0.08)'
+              isActive ? 'rgba(16,185,129,0.25)' : 'rgba(0,0,0,0.08)'
             }`,
             flexShrink: 0,
             transition: 'all 0.25s ease',
@@ -275,7 +275,7 @@ function StageCard({
         >
           <Icon
             size={16}
-            color={isActive ? '#10b981' : isCompleted ? '#10b981' : '#a1a1aa'}
+            color={isActive ? '#10b981' : isCompleted ? '#10b981' : '#52525b'}
             strokeWidth={1.75}
           />
         </div>
@@ -286,7 +286,7 @@ function StageCard({
             style={{
               fontSize: '0.875rem',
               fontWeight: 600,
-              color: isActive || isCompleted ? '#ffffff' : '#d4d4d8',
+              color: isActive || isCompleted ? '#18181b' : '#52525b',
               marginBottom: '0.15rem',
               transition: 'color 0.25s ease',
             }}
@@ -361,13 +361,13 @@ function StageCard({
               style={{
                 marginTop: '1rem',
                 paddingTop: '1rem',
-                borderTop: '1px solid rgba(255,255,255,0.06)',
+                borderTop: '1px solid rgba(0,0,0,0.06)',
               }}
             >
               <p
                 style={{
                   fontSize: '0.8rem',
-                  color: '#a1a1aa',
+                  color: '#52525b',
                   lineHeight: 1.65,
                   marginBottom: '0.875rem',
                 }}
@@ -398,9 +398,9 @@ function StageCard({
                             fontSize: '0.7rem',
                             padding: '3px 8px',
                             borderRadius: 999,
-                            background: 'rgba(255,255,255,0.06)',
-                            border: '1px solid rgba(255,255,255,0.1)',
-                            color: '#a1a1aa',
+                            background: 'rgba(0,0,0,0.06)',
+                            border: '1px solid rgba(0,0,0,0.1)',
+                            color: '#52525b',
                             whiteSpace: 'nowrap',
                           }}
                         >
@@ -467,14 +467,14 @@ function CustomTooltip({
   return (
     <div
       style={{
-        background: '#1a1a1a',
-        border: '1px solid rgba(255,255,255,0.12)',
+        background: '#f4f4f5',
+        border: '1px solid rgba(0,0,0,0.12)',
         borderRadius: 8,
         padding: '8px 12px',
         fontSize: '0.78rem',
       }}
     >
-      <div style={{ color: '#a1a1aa', marginBottom: 2 }}>{data.feature}</div>
+      <div style={{ color: '#52525b', marginBottom: 2 }}>{data.feature}</div>
       <div style={{ color: '#10b981', fontWeight: 700 }}>
         {(value * 100).toFixed(0)}%
       </div>
@@ -503,7 +503,7 @@ function ConfidenceBar({
           marginBottom: '0.3rem',
         }}
       >
-        <span style={{ fontSize: '0.75rem', color: '#a1a1aa' }}>{label}</span>
+        <span style={{ fontSize: '0.75rem', color: '#52525b' }}>{label}</span>
         <span style={{ fontSize: '0.75rem', fontWeight: 600, color }}>
           {value.toFixed(1)}%
         </span>
@@ -512,7 +512,7 @@ function ConfidenceBar({
         style={{
           height: 5,
           borderRadius: 999,
-          background: 'rgba(255,255,255,0.06)',
+          background: 'rgba(0,0,0,0.06)',
           overflow: 'hidden',
         }}
       >
@@ -638,14 +638,14 @@ export default function PipelinePage() {
                 fontSize: '1.75rem',
                 fontWeight: 700,
                 letterSpacing: '-0.03em',
-                color: '#ffffff',
+                color: '#18181b',
                 margin: 0,
               }}
             >
               AI Pipeline
             </h1>
           </div>
-          <p style={{ color: '#a1a1aa', fontSize: '0.9rem', margin: 0 }}>
+          <p style={{ color: '#52525b', fontSize: '0.9rem', margin: 0 }}>
             How the system classifies faults and generates recommendations
           </p>
         </div>
@@ -723,8 +723,8 @@ export default function PipelinePage() {
         {/* ── LEFT: Pipeline visualization ─────────────────────────────── */}
         <div
           style={{
-            background: '#161616',
-            border: '1px solid rgba(255,255,255,0.07)',
+            background: '#f4f4f5',
+            border: '1px solid rgba(0,0,0,0.07)',
             borderRadius: 16,
             padding: '1.5rem',
           }}
@@ -744,7 +744,7 @@ export default function PipelinePage() {
                 gap: '0.5rem',
                 fontSize: '0.9rem',
                 fontWeight: 600,
-                color: '#d4d4d8',
+                color: '#52525b',
               }}
             >
               <Activity size={16} color="#10b981" />
@@ -805,7 +805,7 @@ export default function PipelinePage() {
               justifyContent: 'space-between',
             }}
           >
-            <div style={{ fontSize: '0.78rem', color: '#a1a1aa' }}>
+            <div style={{ fontSize: '0.78rem', color: '#52525b' }}>
               Pipeline completion
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
@@ -814,7 +814,7 @@ export default function PipelinePage() {
                   width: 120,
                   height: 4,
                   borderRadius: 999,
-                  background: 'rgba(255,255,255,0.08)',
+                  background: 'rgba(0,0,0,0.08)',
                   overflow: 'hidden',
                 }}
               >
@@ -847,8 +847,8 @@ export default function PipelinePage() {
           {/* Feature Importance chart */}
           <div
             style={{
-              background: '#161616',
-              border: '1px solid rgba(255,255,255,0.07)',
+              background: '#f4f4f5',
+              border: '1px solid rgba(0,0,0,0.07)',
               borderRadius: 16,
               padding: '1.5rem',
             }}
@@ -863,7 +863,7 @@ export default function PipelinePage() {
             >
               <BarChart2 size={16} color="#06b6d4" strokeWidth={1.75} />
               <span
-                style={{ fontSize: '0.875rem', fontWeight: 600, color: '#d4d4d8' }}
+                style={{ fontSize: '0.875rem', fontWeight: 600, color: '#52525b' }}
               >
                 Feature Importance
               </span>
@@ -894,11 +894,11 @@ export default function PipelinePage() {
                   type="category"
                   dataKey="feature"
                   width={105}
-                  tick={{ fill: '#a1a1aa', fontSize: 11 }}
+                  tick={{ fill: '#52525b', fontSize: 11 }}
                   axisLine={false}
                   tickLine={false}
                 />
-                <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.03)' }} />
+                <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(0,0,0,0.03)' }} />
                 <Bar dataKey="importance" radius={[0, 4, 4, 0]} maxBarSize={14}>
                   {chartData.map((_, idx) => (
                     <Cell key={idx} fill="url(#barGradient)" />
@@ -915,8 +915,8 @@ export default function PipelinePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
             style={{
-              background: '#161616',
-              border: '1px solid rgba(255,255,255,0.07)',
+              background: '#f4f4f5',
+              border: '1px solid rgba(0,0,0,0.07)',
               borderRadius: 16,
               padding: '1.5rem',
             }}
@@ -931,7 +931,7 @@ export default function PipelinePage() {
             >
               <Target size={16} color="#10b981" strokeWidth={1.75} />
               <span
-                style={{ fontSize: '0.875rem', fontWeight: 600, color: '#d4d4d8' }}
+                style={{ fontSize: '0.875rem', fontWeight: 600, color: '#52525b' }}
               >
                 Current Prediction
               </span>
@@ -959,7 +959,7 @@ export default function PipelinePage() {
                 style={{
                   fontSize: '1rem',
                   fontWeight: 600,
-                  color: '#ffffff',
+                  color: '#18181b',
                   marginBottom: '0.2rem',
                 }}
               >
@@ -974,7 +974,7 @@ export default function PipelinePage() {
             <div
               style={{
                 height: 1,
-                background: 'rgba(255,255,255,0.06)',
+                background: 'rgba(0,0,0,0.06)',
                 marginBottom: '1rem',
               }}
             />
@@ -1007,19 +1007,19 @@ export default function PipelinePage() {
               style={{
                 marginTop: '1rem',
                 padding: '0.625rem 0.75rem',
-                background: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255,255,255,0.06)',
+                background: 'rgba(0,0,0,0.03)',
+                border: '1px solid rgba(0,0,0,0.06)',
                 borderRadius: 8,
                 fontSize: '0.72rem',
                 color: '#71717a',
                 lineHeight: 1.55,
               }}
             >
-              <span style={{ color: '#a1a1aa', fontWeight: 500 }}>Model:</span>{' '}
+              <span style={{ color: '#52525b', fontWeight: 500 }}>Model:</span>{' '}
               RF + LSTM Ensemble &nbsp;·&nbsp;
-              <span style={{ color: '#a1a1aa', fontWeight: 500 }}>Trained:</span>{' '}
+              <span style={{ color: '#52525b', fontWeight: 500 }}>Trained:</span>{' '}
               18 months labeled data &nbsp;·&nbsp;
-              <span style={{ color: '#a1a1aa', fontWeight: 500 }}>Classes:</span> 4
+              <span style={{ color: '#52525b', fontWeight: 500 }}>Classes:</span> 4
             </div>
           </motion.div>
         </div>

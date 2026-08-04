@@ -21,7 +21,7 @@ export default function LandingPage() {
           <a href="#benefits" className={styles.navLink}>Impact</a>
         </nav>
         <div className={styles.headerActions}>
-          <Link href={ROUTES.DASHBOARD} className={styles.btnPrimary}>View Dashboard</Link>
+          <Link href={ROUTES.LOGIN} className={styles.btnPrimary}>Log in</Link>
         </div>
       </header>
 
