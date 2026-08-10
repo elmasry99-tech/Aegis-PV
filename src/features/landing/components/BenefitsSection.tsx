@@ -1,7 +1,9 @@
 'use client';
 
+import { Droplets } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { ImpactCard } from '@/shared/components/ImpactCard';
-import { IMPACT_METRICS } from '@/lib/constants';
+import { IMPACT_METRICS, BROADER_IMPACT } from '@/lib/constants';
 import type { ImpactStat } from '@/shared/types';
 import styles from '@/app/page.module.css';
 
@@ -24,6 +26,22 @@ export function BenefitsSection() {
       <div className={styles.featuresGrid}>
         {STATS.map((stat, i) => (
           <ImpactCard key={stat.label} stat={stat} delay={i * 0.1} />
+        ))}
+      </div>
+
+      <div className={styles.impactList}>
+        {BROADER_IMPACT.map((point, i) => (
+          <motion.div
+            key={point}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: i * 0.08 }}
+            className={styles.impactListItem}
+          >
+            <Droplets size={18} />
+            <span>{point}</span>
+          </motion.div>
         ))}
       </div>
     </section>

@@ -5,6 +5,8 @@ import { usePathname, useRouter } from 'next/navigation';
 import { isAuthenticated } from '@/lib/auth';
 import { ScenarioProvider } from '@/shared/contexts/ScenarioContext';
 import { DashboardSidebar } from '@/features/dashboard/components/DashboardSidebar';
+import { cn } from '@/shared/utils/cn';
+import styles from './layout.module.css';
 
 export default function DashboardLayout({
   children,
@@ -24,20 +26,9 @@ export default function DashboardLayout({
 
   return (
     <ScenarioProvider>
-      <div
-        style={{
-          display: 'flex',
-          minHeight: '100vh',
-        }}
-      >
+      <div className={styles.shell}>
         {!isPreview && <DashboardSidebar />}
-        <main
-          style={{
-            marginLeft: isPreview ? 0 : 220,
-            flex: 1,
-            minHeight: '100vh',
-          }}
-        >
+        <main className={cn(styles.main, !isPreview && styles.mainWithSidebar)}>
           {children}
         </main>
       </div>

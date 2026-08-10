@@ -17,10 +17,10 @@ interface ScenarioSelectorProps {
 
 export function ScenarioSelector({ value, onChange }: ScenarioSelectorProps) {
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-3 flex-wrap w-full sm:w-auto">
       <span className="text-sm text-text-secondary shrink-0">Demo Control Panel:</span>
       <Select value={value} onValueChange={(v) => onChange(v as ScenarioKey)}>
-        <SelectTrigger className="w-56">
+        <SelectTrigger className="w-full sm:w-56">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>

@@ -52,6 +52,12 @@
   padding: 0px;
 }
 
+html {
+  overflow-x: hidden;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
   background-color: var(--color-bg);
   color: var(--color-text-primary);
@@ -60,6 +66,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.5;
   overflow-x: hidden;
+  margin: 0;
 }
 
 a {

@@ -51,14 +51,14 @@ export const DASHBOARD_PIPELINE_STEPS = [
 ] as const;
 
 export const COLORS = {
-  emerald: '#10b981',
-  cyan: '#06b6d4',
-  yellow: '#eab308',
-  red: '#ef4444',
-  textSecondary: '#a1a1aa',
+  emerald: '#059669',
+  cyan: '#0891b2',
+  yellow: '#ca8a04',
+  red: '#dc2626',
+  textSecondary: '#52525b',
   textMuted: '#71717a',
-  border: 'rgba(255, 255, 255, 0.1)',
-  bgSecondary: '#161616',
+  border: 'rgba(0, 0, 0, 0.1)',
+  bgSecondary: '#f4f4f5',
 } as const;
 
 export const IMPACT_METRICS = [
@@ -86,4 +86,129 @@ export const FEATURES = [
     description: 'Baseline trained on GCC climate. Handles extreme heat-induced voltage drops and fine dust accumulation invisible to global models.',
     icon: 'CloudRain',
   },
+] as const;
+
+// ─── Problem section ─────────────────────────────────────────────────────────
+export const PROBLEM_POINTS = [
+  {
+    icon: 'Thermometer',
+    title: 'Extreme heat',
+    description: 'Ambient temperatures exceed 50°C, causing severe voltage drops in PV modules.',
+  },
+  {
+    icon: 'Wind',
+    title: 'Fine desert dust',
+    description: 'Airborne dust scatters incoming light, directly reducing irradiance on the cells.',
+  },
+  {
+    icon: 'CloudOff',
+    title: 'No self-cleaning season',
+    description: 'With no rainy season, dust accumulates continuously, year-round, with nothing to wash it away.',
+  },
+  {
+    icon: 'TrendingUp',
+    title: 'Vision 2030 adoption boom',
+    description: 'KSA Vision 2030 is driving rapid residential solar adoption across the Kingdom.',
+  },
+  {
+    icon: 'EyeOff',
+    title: 'Zero visibility for owners',
+    description: 'Most homeowners have no way to see actual performance degradation until it shows up on their bill.',
+  },
+] as const;
+
+export const PROBLEM_STATS = [
+  { value: '20%', label: 'Daily energy loss', description: 'In dry periods, with no visible warning to the homeowner.', tone: 'bad' },
+  { value: '>50%', label: 'Power drop in 6 months', description: 'Cumulative loss from an uncleaned array left unmonitored.', tone: 'bad' },
+  { value: '+23%', label: 'Power recovery', description: 'Regained after a single, correctly-timed cleaning cycle — once you know it needs it.', tone: 'good' },
+] as const;
+
+// ─── Evidence section ────────────────────────────────────────────────────────
+export const DUST_EVIDENCE = [
+  { dust: 0, isc: 0.0776, voc: 2.321, pm: 0.0995, efficiency: 13.88, delta: 0 },
+  { dust: 0.33, isc: null, voc: null, pm: null, efficiency: 12.29, delta: -11.4 },
+  { dust: 0.66, isc: null, voc: null, pm: null, efficiency: 10.51, delta: -24.3 },
+  { dust: 1.32, isc: null, voc: null, pm: null, efficiency: 7.69, delta: -44.6 },
+  { dust: 2.65, isc: null, voc: null, pm: null, efficiency: 4.77, delta: -65.6 },
+  { dust: 5.29, isc: null, voc: null, pm: null, efficiency: 1.83, delta: -86.8 },
+] as const;
+
+export const EVIDENCE_SOURCES = [
+  'Zorrilla-Casanova et al., MDPI',
+  'Dust accumulation & PV performance study, MDPI',
+] as const;
+
+// ─── Competitive comparison ──────────────────────────────────────────────────
+export const COMPARISON_COLUMNS = ['Enphase / SolarEdge', 'Applus+ / 3E', 'Aegis PV'] as const;
+
+export const COMPARISON_ROWS = [
+  { label: 'AI fault diagnosis', values: ['no', 'yes', 'yes'] },
+  { label: 'Hardware agnostic', values: ['no', 'yes', 'yes'] },
+  { label: 'GCC climate calibrated', values: ['no', 'no', 'yes'] },
+  { label: 'Residential accessible', values: ['yes', 'no', 'yes'] },
+  { label: 'Actionable maintenance log', values: ['no', 'partial', 'yes'] },
+  { label: 'Pricing', values: ['Consumer', '$$$ Enterprise', 'Residential'] },
+] as const;
+
+// ─── Why Aegis PV gets adopted ───────────────────────────────────────────────
+export const WHY_ADOPTED = [
+  {
+    icon: 'CheckCircle2',
+    title: 'Solves a real problem',
+    points: [
+      'Tells owners exactly when something is wrong, and why.',
+      'Identifies root cause: dust, shading, heat, or equipment fault.',
+      'Enables faster decisions, fewer losses, lower repair costs.',
+      'Prevents small issues from becoming expensive failures.',
+    ],
+  },
+  {
+    icon: 'TrendingUp',
+    title: 'Compelling business case',
+    points: [
+      'Increases yield through precise, targeted maintenance.',
+      'Reduces unnecessary service calls.',
+      'Reduces downtime and boosts long-term ROI.',
+      'Scales easily via standard APIs.',
+    ],
+  },
+  {
+    icon: 'MapPin',
+    title: 'Built for Saudi Arabia',
+    points: [
+      'Saudi panels are hit hardest: extreme dust plus 50°C+ heat.',
+      'Model calibrated to local GCC conditions, not European baselines.',
+      'More accurate than any global tool applied locally.',
+      "Directly supports Vision 2030's renewable goals.",
+    ],
+  },
+] as const;
+
+// ─── Broader impact ──────────────────────────────────────────────────────────
+export const BROADER_IMPACT = [
+  'Fewer unnecessary cleaning cycles — saves water, labor, and cost in a water-scarce region.',
+  'Extends panel lifespan by catching degrading conditions early.',
+  "Supports Vision 2030's renewable energy targets at the residential scale.",
+] as const;
+
+// ─── Closing / call to action ────────────────────────────────────────────────
+export const CTA_POINTS = [
+  {
+    title: 'The market gap is real',
+    description: 'Nothing serves the GCC residential homeowner between passive loggers and enterprise platforms.',
+  },
+  {
+    title: 'The differentiators are defensible',
+    description: "Saudi-calibrated AI, hardware agnosticism, and plain-language diagnostics can't be replicated by tweaking a global tool.",
+  },
+  {
+    title: 'The opportunity is now',
+    description: 'KSA residential solar is growing fast under Vision 2030 — early movers who own the diagnostic layer define the category.',
+  },
+] as const;
+
+export const CTA_SEEKING = [
+  'Competition recognition',
+  'Pilot partnerships with GCC residential solar installers',
+  'Labeled local soiling datasets for model refinement',
 ] as const;

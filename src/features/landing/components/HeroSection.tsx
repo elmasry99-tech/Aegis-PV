@@ -1,7 +1,12 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Sun } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { ROUTES } from '@/lib/constants';
+import laptopMockup from '@/mockup/laptop.png';
+import mobileMockup from '@/mockup/mobile.png';
 import styles from '@/app/page.module.css';
 
 export function HeroSection() {
@@ -16,27 +21,45 @@ export function HeroSection() {
           Detect solar faults before <span className="text-gradient">power drops.</span>
         </h1>
         <p className={styles.heroDesc}>
-          Aegis PV uses advanced AI to detect dust accumulation, shading, and equipment faults in
-          real-time. Maximize energy yield without unnecessary maintenance.
+          Transforming raw inverter data into actionable maintenance decisions. Aegis PV uses
+          AI calibrated for the GCC to detect dust accumulation, shading, and equipment faults
+          in real-time — maximizing energy yield without unnecessary maintenance.
         </p>
         <div className={styles.heroBtns}>
           <Link href={ROUTES.DASHBOARD} className={styles.btnPrimary}>
-            Explore Dashboard{' '}
+            View Dashboard Example{' '}
             <ArrowRight size={18} style={{ display: 'inline', marginLeft: '8px', verticalAlign: 'middle' }} />
           </Link>
         </div>
       </div>
 
       <div className={styles.heroVisual}>
-        <div style={{ position: 'relative', width: '100%', height: '500px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.1)' }}>
-          <Image 
-            src="/solar-panel-hero.png" 
-            alt="Aegis PV Solar Panels" 
-            fill 
-            style={{ objectFit: 'cover' }} 
-            priority
-          />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(45deg, rgba(6,182,212,0.2) 0%, transparent 100%)' }} />
+        <div className={styles.mockupScene}>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+          >
+            <Image
+              src={laptopMockup}
+              alt="Aegis PV dashboard on a laptop"
+              className={styles.mockupLaptop}
+              priority
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 32, x: 16 }}
+            animate={{ opacity: 1, y: 0, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.25, ease: 'easeOut' }}
+            className={styles.mockupMobile}
+          >
+            <Image
+              src={mobileMockup}
+              alt="Aegis PV landing page on a phone"
+              style={{ width: '100%', height: 'auto', display: 'block' }}
+              priority
+            />
+          </motion.div>
         </div>
       </div>
     </section>
