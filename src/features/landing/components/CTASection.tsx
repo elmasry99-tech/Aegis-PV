@@ -22,11 +22,21 @@ export function CTASection() {
 
         <div className={styles.ctaGrid}>
           <div className={styles.ctaPoints}>
-            {CTA_POINTS.map((point) => (
-              <div key={point.title}>
-                <div className={styles.ctaPointTitle}>{point.title}</div>
-                <p className={styles.ctaPointDesc}>{point.description}</p>
-              </div>
+            {CTA_POINTS.map((point, i) => (
+              <motion.div
+                key={point.title}
+                initial={{ opacity: 0, x: -16 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className={styles.ctaPoint}
+              >
+                <span className={styles.ctaPointNumber}>{String(i + 1).padStart(2, '0')}</span>
+                <div>
+                  <div className={styles.ctaPointTitle}>{point.title}</div>
+                  <p className={styles.ctaPointDesc}>{point.description}</p>
+                </div>
+              </motion.div>
             ))}
           </div>
 

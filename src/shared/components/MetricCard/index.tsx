@@ -20,7 +20,7 @@ export function MetricCard({ label, value, unit, icon, className, delay = 0 }: M
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay }}
       className={cn(
-        'rounded-2xl border border-border-default bg-bg-secondary p-5',
+        'flex h-full min-h-[150px] flex-col justify-between rounded-2xl border border-border-default bg-bg-secondary px-5 py-7',
         className
       )}
     >

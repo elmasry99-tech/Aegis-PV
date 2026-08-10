@@ -22,6 +22,13 @@ export function PipelineSection() {
         </p>
       </div>
       <div className={styles.pipelineFlow}>
+        <motion.div
+          className={styles.pipelineLine}
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: 'easeInOut', delay: 0.2 }}
+        />
         {PIPELINE_STEPS.map((step, i) => (
           <motion.div
             key={step.id}
@@ -33,9 +40,7 @@ export function PipelineSection() {
           >
             <span className={styles.pipelineIcon}>{ICON_MAP[step.id]}</span>
             <div className={styles.pipelineLabel}>{step.label}</div>
-            <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', marginTop: '0.5rem' }}>
-              {step.description}
-            </p>
+            <p className={styles.pipelineDesc}>{step.description}</p>
           </motion.div>
         ))}
       </div>

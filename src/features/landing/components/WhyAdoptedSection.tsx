@@ -3,6 +3,7 @@
 import { CheckCircle2, TrendingUp, MapPin, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { WHY_ADOPTED } from '@/lib/constants';
+import { useSpotlight } from '@/shared/hooks/useSpotlight';
 import styles from '@/app/page.module.css';
 
 const ICON_MAP: Record<string, React.ReactNode> = {
@@ -12,6 +13,8 @@ const ICON_MAP: Record<string, React.ReactNode> = {
 };
 
 export function WhyAdoptedSection() {
+  const onMouseMove = useSpotlight<HTMLDivElement>();
+
   return (
     <section id="why-us" className={styles.section}>
       <div className={styles.sectionHeader}>
@@ -30,6 +33,7 @@ export function WhyAdoptedSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: i * 0.1 }}
+            onMouseMove={onMouseMove}
             className={`${styles.whyCol} glass`}
           >
             <div className={styles.whyColHeader}>

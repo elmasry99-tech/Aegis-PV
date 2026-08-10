@@ -3,6 +3,7 @@
 import { Cpu, Zap, CloudRain } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { FEATURES } from '@/lib/constants';
+import { useSpotlight } from '@/shared/hooks/useSpotlight';
 import styles from '@/app/page.module.css';
 
 const ICON_MAP: Record<string, React.ReactNode> = {
@@ -12,6 +13,8 @@ const ICON_MAP: Record<string, React.ReactNode> = {
 };
 
 export function FeaturesSection() {
+  const onMouseMove = useSpotlight<HTMLDivElement>();
+
   return (
     <section id="features" className={styles.section}>
       <div className={styles.sectionHeader}>
@@ -29,6 +32,7 @@ export function FeaturesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
+            onMouseMove={onMouseMove}
             className={`${styles.featureCard} glass`}
           >
             <div className={styles.featureIcon}>{ICON_MAP[feature.icon]}</div>

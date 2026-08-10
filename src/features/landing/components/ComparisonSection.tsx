@@ -1,6 +1,7 @@
 'use client';
 
 import { Check, X, Minus } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { COMPARISON_COLUMNS, COMPARISON_ROWS } from '@/lib/constants';
 import styles from '@/app/page.module.css';
 
@@ -22,7 +23,13 @@ export function ComparisonSection() {
         </p>
       </div>
 
-      <div className={styles.compareWrap}>
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className={styles.compareWrap}
+      >
         <table className={styles.compareTable}>
           <thead>
             <tr>
@@ -35,8 +42,14 @@ export function ComparisonSection() {
             </tr>
           </thead>
           <tbody>
-            {COMPARISON_ROWS.map((row) => (
-              <tr key={row.label}>
+            {COMPARISON_ROWS.map((row, i) => (
+              <motion.tr
+                key={row.label}
+                initial={{ opacity: 0, x: -12 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.35, delay: i * 0.06 }}
+              >
                 <td>{row.label}</td>
                 {row.values.map((value, i) => (
                   <td
@@ -46,11 +59,11 @@ export function ComparisonSection() {
                     <Cell value={value} />
                   </td>
                 ))}
-              </tr>
+              </motion.tr>
             ))}
           </tbody>
         </table>
-      </div>
+      </motion.div>
     </section>
   );
 }

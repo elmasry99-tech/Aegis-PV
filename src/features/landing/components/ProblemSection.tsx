@@ -3,6 +3,8 @@
 import { Thermometer, Wind, CloudOff, TrendingUp, EyeOff } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { PROBLEM_POINTS, PROBLEM_STATS } from '@/lib/constants';
+import { AnimatedNumber } from '@/shared/components/AnimatedNumber';
+import { useSpotlight } from '@/shared/hooks/useSpotlight';
 import styles from '@/app/page.module.css';
 
 const ICON_MAP: Record<string, React.ReactNode> = {
@@ -14,6 +16,8 @@ const ICON_MAP: Record<string, React.ReactNode> = {
 };
 
 export function ProblemSection() {
+  const onMouseMove = useSpotlight<HTMLDivElement>();
+
   return (
     <section id="problem" className={styles.section}>
       <div className={styles.sectionHeader}>
@@ -52,9 +56,10 @@ export function ProblemSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
+              onMouseMove={onMouseMove}
               className={`${styles.statCard} ${stat.tone === 'good' ? styles.statCardGood : ''} glass`}
             >
-              <div className={styles.statValue}>{stat.value}</div>
+              <AnimatedNumber value={stat.value} className={styles.statValue} />
               <div className={styles.statLabel}>{stat.label}</div>
               <p className={styles.statDesc}>{stat.description}</p>
             </motion.div>

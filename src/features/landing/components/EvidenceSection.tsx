@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { DUST_EVIDENCE, EVIDENCE_SOURCES } from '@/lib/constants';
+import { AnimatedNumber } from '@/shared/components/AnimatedNumber';
 import styles from '@/app/page.module.css';
 
 function barColor(efficiency: number): string {
@@ -46,7 +47,7 @@ export function EvidenceSection() {
               />
             </div>
             <span className={styles.evidenceValue} style={{ color: barColor(row.efficiency) }}>
-              {row.efficiency.toFixed(2)}%
+              <AnimatedNumber value={`${row.efficiency.toFixed(2)}%`} duration={900} />
               <span className={styles.evidenceDelta}>
                 {row.delta === 0 ? 'baseline' : `${row.delta.toFixed(1)}%`}
               </span>
