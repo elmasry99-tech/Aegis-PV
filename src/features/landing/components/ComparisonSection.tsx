@@ -5,10 +5,11 @@ import { motion } from 'framer-motion';
 import { COMPARISON_COLUMNS, COMPARISON_ROWS } from '@/lib/constants';
 import styles from '@/app/page.module.css';
 
-function Cell({ value }: { value: string }) {
+function Cell({ value, isBrand }: { value: string; isBrand?: boolean }) {
   if (value === 'yes') return <span className={styles.compareIconYes}><Check size={18} /></span>;
   if (value === 'no') return <span className={styles.compareIconNo}><X size={18} /></span>;
   if (value === 'partial') return <span className={styles.compareIconPartial}><Minus size={18} /></span>;
+  if (isBrand) return <span className={styles.compareBrandValue}>{value}</span>;
   return <span>{value}</span>;
 }
 
@@ -35,7 +36,7 @@ export function ComparisonSection() {
             <tr>
               <th></th>
               {COMPARISON_COLUMNS.map((col) => (
-                <th key={col} className={col === 'Aegis PV' ? styles.compareBrandCol : undefined}>
+                <th key={col} className={col === 'Aegis-PV Proposed' ? styles.compareBrandCol : undefined}>
                   {col}
                 </th>
               ))}
@@ -54,9 +55,9 @@ export function ComparisonSection() {
                 {row.values.map((value, i) => (
                   <td
                     key={i}
-                    className={COMPARISON_COLUMNS[i] === 'Aegis PV' ? styles.compareBrandCol : undefined}
+                    className={COMPARISON_COLUMNS[i] === 'Aegis-PV Proposed' ? styles.compareBrandCol : undefined}
                   >
-                    <Cell value={value} />
+                    <Cell value={value} isBrand={COMPARISON_COLUMNS[i] === 'Aegis-PV Proposed'} />
                   </td>
                 ))}
               </motion.tr>

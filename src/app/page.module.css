@@ -863,6 +863,11 @@
   background: rgba(16, 185, 129, 0.06);
 }
 
+.compareBrandValue {
+  font-weight: 600;
+  color: var(--color-brand-cyan);
+}
+
 .compareIconYes {
   color: var(--color-brand-emerald);
   display: inline-flex;

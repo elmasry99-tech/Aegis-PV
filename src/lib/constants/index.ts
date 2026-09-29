@@ -139,15 +139,49 @@ export const EVIDENCE_SOURCES = [
 ] as const;
 
 // ─── Competitive comparison ──────────────────────────────────────────────────
-export const COMPARISON_COLUMNS = ['Enphase / SolarEdge', 'Applus+ / 3E', 'Aegis PV'] as const;
+export const COMPARISON_COLUMNS = ['Enphase or SolarEdge', 'Applus+', '3E SynaptiQ', 'Aegis-PV Proposed'] as const;
 
 export const COMPARISON_ROWS = [
-  { label: 'AI fault diagnosis', values: ['no', 'yes', 'yes'] },
-  { label: 'Hardware agnostic', values: ['no', 'yes', 'yes'] },
-  { label: 'GCC climate calibrated', values: ['no', 'no', 'yes'] },
-  { label: 'Residential accessible', values: ['yes', 'no', 'yes'] },
-  { label: 'Actionable maintenance log', values: ['no', 'partial', 'yes'] },
-  { label: 'Pricing', values: ['Consumer', '$$$ Enterprise', 'Residential'] },
+  {
+    label: 'Fault Detection and Diagnostics',
+    values: ['Yes', 'Yes', 'Yes', 'Planned'],
+  },
+  {
+    label: 'Advanced Analytics or AI',
+    values: ['Yes or varies by platform', 'ML and data science', 'Advanced analytics and digital twin', 'Planned ML diagnosis'],
+  },
+  {
+    label: 'Soiling or Dust Analysis',
+    values: ['Limited or system dependent', 'Soiling rate and loss analysis', 'Loss and root cause analytics', 'Core proposed feature'],
+  },
+  {
+    label: 'Shading or Performance Loss Diagnosis',
+    values: ['Some diagnostics available', 'Performance analytics', 'Root cause loss analysis', 'Core proposed feature'],
+  },
+  {
+    label: 'Hardware Agnostic',
+    values: ['No — mainly vendor ecosystems', 'Partial — integrates plant or SCADA data', 'Yes', 'Planned through Modbus or REST'],
+  },
+  {
+    label: 'GCC Specific Climate Calibration',
+    values: ['Not established in reviewed sources', 'Not established in reviewed sources', 'Not established in reviewed sources', 'Proposed GCC focus'],
+  },
+  {
+    label: 'Residential Focus',
+    values: ['Strong', 'No — mainly professional or utility', 'No — professional asset management', 'Core target market'],
+  },
+  {
+    label: 'Actionable Maintenance Guidance',
+    values: ['Alerts and troubleshooting vary', 'Analyst supported insights', 'Recommendations and task management', 'Planned homeowner actions'],
+  },
+  {
+    label: 'Digital Twin',
+    values: ['Not core in reviewed sources', 'Not established for this comparison', 'Yes', 'Proposed'],
+  },
+  {
+    label: 'Typical Positioning',
+    values: ['Residential vendor ecosystem', 'Professional utility scale analytics', 'Professional renewable asset management', 'GCC residential solar intelligence'],
+  },
 ] as const;
 
 // ─── Why Aegis PV gets adopted ───────────────────────────────────────────────
