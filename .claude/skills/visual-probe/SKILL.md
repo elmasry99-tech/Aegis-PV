@@ -1,6 +1,6 @@
 ---
 name: visual-probe
-description: Screenshot an Aegis-PV route with headless Chrome at five viewports (480, 768, 1280, 1440, 1600 wide) in light and dark theme, for the ux-reviewer to open with Read. Use after any UI change; needs the dev server running.
+description: Screenshot an Aegis-PV route with headless Chrome at five viewports (540, 768, 1280, 1440, 1600 wide) in light and dark theme, for the ux-reviewer to open with Read. Use after any UI change; needs the dev server running.
 allowed-tools:
   - Bash
 ---
@@ -14,7 +14,7 @@ bash .claude/skills/visual-probe/scripts/probe.sh "/dashboard/evidence?site=riya
 
 Writes `docs/qa/visual/<label>/<width>-<theme>.png` and `manifest.txt` (one image per line,
 in review order). Theme is forced with the `?theme=dark|light` query the root layout honours
-(it does not persist). Base URL defaults to `http://localhost:3000`; override with `BASE_URL`.
+(it is saved to that browser profile's localStorage; each shot uses a fresh profile). Base URL defaults to `http://localhost:3000`; override with `BASE_URL`.
 
 Uses Chrome (or Edge) `--headless=new` with a fresh `--user-data-dir` per shot and a
 `--virtual-time-budget` so framer-motion entrances finish and live data has loaded

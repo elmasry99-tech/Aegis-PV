@@ -37,6 +37,6 @@ const ok = (name, pass, detail = '') => { assertions.push({ name, pass: !!pass, 
   const pass = assertions.every(a => a.pass);
   fs.writeFileSync(`${out}/live-smoke.json`, JSON.stringify({ gate: 'live-smoke', pass, ran_at: new Date().toISOString(), command: `GET ${base}/api/live/*${q}`, assertions }, null, 2));
   console.log(`live-smoke: ${line.join(' ')} → ${pass ? 'pass' : 'FAIL'}`);
-  process.exit(pass ? 0 : 1);
+  process.exitCode = pass ? 0 : 1; // not process.exit(): it aborts libuv mid-close on Windows
 })();
 EOF

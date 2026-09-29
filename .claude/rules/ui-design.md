@@ -10,5 +10,5 @@ for quality is the landing page (`src/app/page.tsx` + `src/features/landing/**`)
 - **U5 · Mode is always visible.** The header shows which mode (Demo/Live), which site, when it was updated, and the source (AI / Rules / stale). *Why:* users must know whether data is live.
 - **U6 · Same panels, both modes.** Live and Demo render the same components from one `DashboardView` shape; no live-only layout. *Why:* agreed spec — "it should be as scenarios".
 - **U7 · Units are kW / kWh.** Residential scale. *Why:* report targets homes; the old "MW" label contradicted the kW chart.
-- **U8 · Responsive.** Works at 480, 768, 1024, 1280, 1440 widths with no horizontal scroll. *Why:* ux-reviewer viewports.
+- **U8 · Responsive.** Works at 480, 768, 1024, 1280, 1440 widths with no horizontal scroll (visual-probe covers ≥ 540; check 480 with Playwright `webapp-testing` or DevTools device mode). *Why:* ux-reviewer viewports.
 - **U9 · Accessible.** Interactive controls are `<button>`/`<a>` with visible focus and `aria-pressed`/`aria-label` where icon-only; motion respects `prefers-reduced-motion`. *Why:* web-design-guidelines.

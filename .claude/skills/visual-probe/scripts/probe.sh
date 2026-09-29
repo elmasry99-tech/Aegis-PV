@@ -16,13 +16,14 @@ done
 
 sep='?'; [[ "$route" == *\?* ]] && sep='&'
 for theme in light dark; do
-  for w in 1600 1440 1280 768 480; do
+  for w in 1600 1440 1280 768 540; do  # headless Chrome floors the viewport at ~526 px
     h=$(( w <= 768 ? 1800 : 1100 ))
     png="$out/${w}-${theme}.png"
     profile="$(mktemp -d)"
     # Windows Chrome needs a Windows path for --screenshot
     target="$(cd "$out" && pwd -W 2>/dev/null || pwd)/${w}-${theme}.png"
-    "$chrome" --headless=new --disable-gpu --hide-scrollbars --no-first-run \
+    # timeout: one hung Chrome must not stall the bundle (LEARNINGS 2026-07-05 headless)
+    timeout 60 "$chrome" --headless=new --force-prefers-reduced-motion --disable-gpu --hide-scrollbars --no-first-run \
       --user-data-dir="$(cd "$profile" && pwd -W 2>/dev/null || echo "$profile")" \
       --window-size="${w},${h}" --virtual-time-budget="$budget" \
       --screenshot="$target" "${base}${route}${sep}theme=${theme}" >/dev/null 2>&1 || true

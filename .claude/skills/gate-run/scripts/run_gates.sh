@@ -25,6 +25,7 @@ run_gate() {
 }
 
 run_gate lint npx eslint src
+npx next typegen >/dev/null 2>&1 # RouteContext/PageProps are generated per route (Next 16)
 run_gate typecheck npx tsc --noEmit
 if [[ "$fast" != "--fast" ]]; then run_gate build npx next build; fi
 

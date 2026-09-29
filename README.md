@@ -1,5 +1,21 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Live mode (dashboard)
+
+`/dashboard` has a **Demo | Live** toggle. Live mode analyses two simulated homes — Riyadh (Al-Malqa)
+and Dhahran (KFUPM) — using **real weather** from [Open-Meteo](https://open-meteo.com) and a
+**simulated inverter** built from Saudi averages, then asks Claude for a diagnosis.
+**View evidence** (`/dashboard/evidence?site=…`) shows the exact data sent to the AI.
+
+```bash
+cp .env.example .env.local     # then set ANTHROPIC_API_KEY=...
+npm run dev                    # open http://localhost:3000/dashboard and switch to Live
+```
+
+Without a key, live mode still works and uses the built-in rules engine (badged "Rules engine").
+API: `GET /api/live/riyadh` or `/api/live/dhahran` (`?refresh=1` skips the 15-minute cache).
+Code: `src/lib/live/` (weather, digital twin, AI, rules) · agent setup: `.claude/README.md`.
+
 ## Getting Started
 
 First, run the development server:
