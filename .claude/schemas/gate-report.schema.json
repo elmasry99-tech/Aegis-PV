@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Gate report",
+  "description": "One file per gate run, written to docs/qa/gates/<gate>.json by gate-run, live-smoke, visual-probe or ux-reviewer.",
+  "type": "object",
+  "required": ["gate", "pass", "ran_at", "assertions"],
+  "properties": {
+    "gate":       { "enum": ["lint", "typecheck", "build", "live-smoke", "visual-probe", "human-eye"] },
+    "pass":       { "type": "boolean" },
+    "ran_at":     { "type": "string", "format": "date-time" },
+    "command":    { "type": "string" },
+    "assertions": {
+      "type": "array",
+      "items": {
+        "type": "object", "required": ["name", "pass"],
+        "properties": { "name": { "type": "string" }, "pass": { "type": "boolean" }, "detail": { "type": "string" }, "evidence": { "type": "string" } }
+      }
+    },
+    "fix_requests": { "type": "array", "items": { "type": "string" } },
+    "log_tail":     { "type": "string", "description": "last ~40 lines of tool output when the gate failed" }
+  }
+}
