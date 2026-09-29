@@ -20,8 +20,11 @@ export const metadata: Metadata = {
 };
 
 // Applies the saved theme before paint so there's no light/dark flash on load.
+// `?theme=dark|light` overrides it for one visit (used by the visual-probe screenshots).
 const themeInitScript = `
   try {
+    var q = new URLSearchParams(location.search).get('theme');
+    if (q === 'dark' || q === 'light') localStorage.setItem('aegis_theme', q);
     var t = localStorage.getItem('aegis_theme');
     if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
   } catch (e) {}
