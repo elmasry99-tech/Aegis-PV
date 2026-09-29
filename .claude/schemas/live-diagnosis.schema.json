@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Aegis-PV live diagnosis",
+  "description": "What the AI (or the rules fallback) must return for one site. Mirrors LiveDiagnosisSchema in src/lib/live/types.ts — change both together. Fields map to the report's Fault card (cause, confidence, affected area, first seen, severity) + health score + action.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["title", "cause", "summary", "confidence", "status", "severity", "isFault", "healthScore", "affectedArea", "firstSeen", "action", "actionAudience", "priority", "evidence", "confidenceBreakdown", "estimatedLossPct"],
+  "properties": {
+    "title":          { "type": "string", "description": "≤ 5 words, e.g. 'Soiling Detected', 'System Optimal'" },
+    "cause":          { "enum": ["none", "soiling", "shading", "thermal", "degradation", "equipment", "data-quality"] },
+    "summary":        { "type": "string", "description": "1–2 plain-language sentences for a homeowner" },
+    "confidence":     { "type": "integer", "minimum": 0, "maximum": 100 },
+    "status":         { "enum": ["healthy", "warning", "critical"] },
+    "severity":       { "enum": ["none", "low", "medium", "high", "critical"] },
+    "isFault":        { "type": "boolean", "description": "true only when confidence ≥ 85, or status is critical (rule A6)" },
+    "healthScore":    { "type": "integer", "minimum": 0, "maximum": 100, "description": "report: based on current performance, open faults, data quality" },
+    "affectedArea":   { "type": "string", "description": "e.g. 'Whole array', 'String 2', 'None'" },
+    "firstSeen":      { "type": "string", "description": "human time, e.g. 'Gradual over ~14 days' or '10:00 today'" },
+    "action":         { "type": "string", "description": "one clear next step" },
+    "actionAudience": { "enum": ["homeowner", "technician", "none"], "description": "rule G4" },
+    "priority":       { "enum": ["none", "low", "medium", "high", "urgent"] },
+    "evidence":       { "type": "array", "items": { "type": "string" }, "minItems": 2, "maxItems": 5, "description": "which data supported the decision (report §Alert design)" },
+    "confidenceBreakdown": {
+      "type": "object", "additionalProperties": false,
+      "required": ["modelProbability", "dataQuality", "eventDuration"],
+      "description": "report's Confidence layer: model probability, data quality, event duration",
+      "properties": {
+        "modelProbability": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "dataQuality":      { "type": "integer", "minimum": 0, "maximum": 100 },
+        "eventDuration":    { "type": "integer", "minimum": 0, "maximum": 100 }
+      }
+    },
+    "estimatedLossPct": { "type": "number", "description": "share of expected energy lost today, %" }
+  }
+}

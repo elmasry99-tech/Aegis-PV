@@ -1,48 +1,90 @@
 'use client';
 
-import { Zap, Activity, Droplet, Leaf } from 'lucide-react';
-import { MetricCard } from '@/shared/components/MetricCard';
-import type { ScenarioKey } from '@/shared/types';
-import { CURRENT_OUTPUT } from '@/lib/mock-data';
-import { STATIC_METRIC_VALUES } from '@/lib/mock-data/metrics';
+import type { ReactNode } from 'react';
+import { Zap, Activity, BatteryCharging, SunMedium } from 'lucide-react';
+import type { DashboardView } from '@/features/dashboard/types';
+import { CountUp } from './CountUp';
+import { GlassCard } from './GlassCard';
 import styles from '@/app/dashboard/dashboard.module.css';
 
-interface StatsRowProps {
-  scenario: ScenarioKey;
+interface StatProps {
+  label: string;
+  icon: ReactNode;
+  value: number;
+  unit: string;
+  decimals?: number;
+  foot: ReactNode;
+  delay: number;
 }
 
-export function StatsRow({ scenario }: StatsRowProps) {
-  const currentOutput = CURRENT_OUTPUT[scenario];
+function Stat({ label, icon, value, unit, decimals = 1, foot, delay }: StatProps) {
+  return (
+    <GlassCard className={styles.stat} delay={delay} as="div">
+      <div className={styles.statLabel}>
+        <span className={styles.statIcon}>{icon}</span>
+        {label}
+      </div>
+      <div className={styles.statValue}>
+        <CountUp value={value} decimals={decimals} />
+        <span className={styles.statUnit}>{unit}</span>
+      </div>
+      <div className={styles.statFoot}>{foot}</div>
+    </GlassCard>
+  );
+}
+
+export function StatsRow({ view }: { view: DashboardView }) {
+  const m = view.metrics;
+  const nowGap = m.expectedOutputKw > 0 ? ((m.currentOutputKw - m.expectedOutputKw) / m.expectedOutputKw) * 100 : 0;
+  const idle = !view.isDaylight;
 
   return (
     <div className={styles.statsRow}>
-      <MetricCard
+      <Stat
         label="Current Output"
-        value={<span className="text-xl">{currentOutput.toFixed(1)}</span>}
-        unit="MW"
-        icon={<Zap size={16} />}
-        delay={0}
-      />
-      <MetricCard
-        label="Expected Output"
-        value={<span className="text-xl">{STATIC_METRIC_VALUES.expectedOutput.toFixed(1)}</span>}
-        unit="MW"
-        icon={<Activity size={16} />}
+        icon={<Zap size={15} />}
+        value={m.currentOutputKw}
+        unit="kW"
+        decimals={2}
         delay={0.05}
+        foot={
+          idle ? 'Night — system idle' : (
+            <span className={nowGap < -2 ? styles.down : styles.up}>
+              <strong>{nowGap > 0 ? '+' : ''}{nowGap.toFixed(1)}%</strong> vs expected
+            </span>
+          )
+        }
       />
-      <MetricCard
-        label="Water Saved (YTD)"
-        value={<span className="text-xl">{STATIC_METRIC_VALUES.waterSaved.toFixed(1)}</span>}
-        unit="kL"
-        icon={<Droplet size={16} />}
+      <Stat
+        label="Expected Output"
+        icon={<Activity size={15} />}
+        value={m.expectedOutputKw}
+        unit="kW"
+        decimals={2}
         delay={0.1}
+        foot="Digital-twin baseline for current weather"
       />
-      <MetricCard
-        label="CO₂ Reduction"
-        value={<span className="text-xl">{STATIC_METRIC_VALUES.co2Reduction.toLocaleString()}</span>}
-        unit="kg"
-        icon={<Leaf size={16} />}
+      <Stat
+        label="Energy Today"
+        icon={<BatteryCharging size={15} />}
+        value={m.energyTodayKwh}
+        unit="kWh"
         delay={0.15}
+        foot={
+          <span>
+            of {m.expectedEnergyTodayKwh.toFixed(1)} kWh expected ·{' '}
+            <strong className={m.gapPct > 3 ? styles.down : styles.up}>{m.gapPct.toFixed(1)}% gap</strong>
+          </span>
+        }
+      />
+      <Stat
+        label="Irradiance"
+        icon={<SunMedium size={15} />}
+        value={m.ghi}
+        unit="W/m²"
+        decimals={0}
+        delay={0.2}
+        foot={`${m.ambientTempC.toFixed(0)} °C air · ${m.cellTempC.toFixed(0)} °C panels`}
       />
     </div>
   );

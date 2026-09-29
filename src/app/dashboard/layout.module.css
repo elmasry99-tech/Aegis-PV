@@ -5,6 +5,7 @@
 
 .main {
   flex: 1;
+  min-width: 0; /* flex item: without this, wide content (charts, tables) widens the page */
   min-height: 100vh;
 }
 

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GET /api/live/[site] response",
+  "description": "Mirrors LiveAnalysisSchema in src/lib/live/types.ts. The `payload` object is exactly what is sent to the AI (rules/data-contract.md).",
+  "type": "object",
+  "required": ["site", "generatedAt", "source", "model", "stale", "fallbackReason", "isDaylight", "metrics", "chart", "diagnosis", "payload"],
+  "properties": {
+    "site": {
+      "type": "object",
+      "required": ["id", "name", "city", "lat", "lon"],
+      "properties": {
+        "id":   { "enum": ["riyadh", "dhahran"] },
+        "name": { "type": "string" }, "city": { "type": "string" },
+        "lat":  { "type": "number" }, "lon":  { "type": "number" }
+      }
+    },
+    "generatedAt":    { "type": "string", "format": "date-time" },
+    "source":         { "enum": ["ai", "rules"] },
+    "model":          { "type": ["string", "null"] },
+    "stale":          { "type": "boolean", "description": "true when weather failed and a cached result is served" },
+    "fallbackReason": { "type": ["string", "null"] },
+    "isDaylight":     { "type": "boolean" },
+    "metrics": {
+      "type": "object",
+      "required": ["currentOutputKw", "expectedOutputKw", "energyTodayKwh", "expectedEnergyTodayKwh", "gapPct", "ghi", "gti", "ambientTempC", "cellTempC", "humidityPct"],
+      "additionalProperties": { "type": "number" }
+    },
+    "chart": {
+      "type": "array",
+      "items": {
+        "type": "object", "required": ["time", "expected", "actual"],
+        "properties": { "time": { "type": "string" }, "expected": { "type": "number" }, "actual": { "type": "number" } }
+      }
+    },
+    "diagnosis": { "$ref": "live-diagnosis.schema.json" },
+    "payload": {
+      "type": "object",
+      "required": ["climate", "operational", "context", "twin"],
+      "properties": {
+        "climate":     { "type": "object", "required": ["source", "current", "hourly"] },
+        "operational": { "type": "object", "required": ["source", "current", "hourly"] },
+        "context":     { "type": "object", "required": ["location", "system"] },
+        "twin":        { "type": "object", "required": ["method", "hourly", "gapPct"] }
+      }
+    }
+  }
+}

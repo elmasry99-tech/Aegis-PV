@@ -1,20 +1,109 @@
+/* ── Dashboard — matches the landing page's glass/spotlight language ─────────
+   Note: globals.css has an unlayered `* { margin: 5px; padding: 0 }` reset that beats
+   Tailwind's layered spacing utilities, so all spacing here lives in this module. */
+
 .dashboard {
-  padding: 2rem;
+  position: relative;
+  padding: 2rem 2rem 3rem;
   max-width: 1400px;
   margin: 0 auto;
   min-height: 100vh;
+  isolation: isolate;
+}
+
+.dashboard * {
+  margin: 0;
+}
+
+.glow1,
+.glow2 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.glow1 {
+  top: -120px;
+  right: -80px;
+  width: 620px;
+  height: 620px;
+  background: radial-gradient(circle, var(--color-brand-cyan-glow) 0%, transparent 65%);
+}
+
+.glow2 {
+  top: 380px;
+  left: -160px;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, var(--color-brand-emerald-glow) 0%, transparent 65%);
+}
+
+/* ── Header ───────────────────────────────────────────────────────────── */
+
+.topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 2rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.75rem;
+}
+
+.headerText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: flex-start;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--color-brand-emerald);
+  background: color-mix(in srgb, var(--color-brand-emerald) 10%, transparent);
+  border: 1px solid var(--color-brand-emerald-glow);
+}
+
+.eyebrow.live {
+  color: var(--color-brand-cyan);
+  background: color-mix(in srgb, var(--color-brand-cyan) 10%, transparent);
+  border-color: var(--color-brand-cyan-glow);
+}
+
+.eyebrowDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 10px currentColor;
+}
+
+.live .eyebrowDot {
+  animation: livePulse 1.8s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.8); }
 }
 
 .title {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
 }
 
 .subtitle {
@@ -24,311 +113,763 @@
 
 .controls {
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap;
   align-items: center;
+  gap: 0.75rem;
+}
+
+/* Segmented control (Demo | Live, Riyadh | Dhahran) */
+.segmented {
+  position: relative;
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 9999px;
   background: var(--color-bg-secondary);
-  padding: 0.5rem 1rem;
-  border-radius: 12px;
   border: 1px solid var(--color-border);
 }
 
-.select {
+.segment {
+  position: relative;
+  z-index: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1rem;
+  border: none;
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.segment:hover {
+  color: var(--color-text-primary);
+}
+
+.segment:focus-visible {
+  outline: 2px solid var(--color-brand-cyan);
+  outline-offset: 2px;
+}
+
+.segment[aria-pressed='true'] {
+  color: var(--color-bg);
+}
+
+.segmentPill {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 9999px;
+  background: var(--gradient-emerald-cyan);
+  box-shadow: 0 4px 16px var(--color-brand-emerald-glow);
+}
+
+/* Status strip under the header */
+.statusBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+  padding: 0.7rem 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 14px;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.statusItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.statusSpacer {
+  flex: 1;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.badgeAi { color: var(--color-brand-cyan); background: color-mix(in srgb, var(--color-brand-cyan) 12%, transparent); border-color: var(--color-brand-cyan-glow); }
+.badgeRules { color: var(--color-brand-yellow); background: color-mix(in srgb, var(--color-brand-yellow) 12%, transparent); border-color: color-mix(in srgb, var(--color-brand-yellow) 30%, transparent); }
+.badgeStale { color: var(--color-brand-red); background: color-mix(in srgb, var(--color-brand-red) 10%, transparent); border-color: color-mix(in srgb, var(--color-brand-red) 30%, transparent); }
+.badgeDemo { color: var(--color-text-secondary); background: var(--color-bg-tertiary); border-color: var(--color-border); }
+.badgeNight { color: var(--color-text-secondary); background: var(--color-bg-tertiary); border-color: var(--color-border); }
+
+.iconButton,
+.linkButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
   background: var(--color-bg);
   color: var(--color-text-primary);
-  border: 1px solid var(--color-border);
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-family: inherit;
-  outline: none;
+  font-size: 0.8rem;
+  font-weight: 600;
   cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
 }
 
-.select:focus {
+.iconButton:hover,
+.linkButton:hover {
   border-color: var(--color-brand-cyan);
+  color: var(--color-brand-cyan);
+  transform: translateY(-1px);
 }
 
-/* Stats Row */
-.statsRow {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
+.iconButton:disabled {
+  opacity: 0.6;
+  cursor: progress;
+  transform: none;
 }
 
-/* Layout Grid */
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 350px;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
+.iconButton:focus-visible,
+.linkButton:focus-visible {
+  outline: 2px solid var(--color-brand-cyan);
+  outline-offset: 2px;
 }
 
-@media (max-width: 1024px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-  .statsRow {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.spin {
+  animation: spin 0.9s linear infinite;
 }
 
-@media (max-width: 640px) {
-  .dashboard {
-    padding: 1.25rem;
-  }
-
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .controls {
-    width: 100%;
-  }
-
-  .select {
-    flex: 1;
-  }
-
-  .title {
-    font-size: 1.5rem;
-  }
-
-  .statsRow {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .grid {
-    gap: 1rem;
-  }
-
-  .card {
-    padding: 1.25rem;
-  }
-
-  .diagnosisResult {
-    font-size: 1.75rem;
-  }
-
-  .pipeline {
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .pipeLine {
-    display: none;
-  }
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
+
+/* ── Cards ────────────────────────────────────────────────────────────── */
 
 .card {
-  background: var(--color-bg-secondary);
-  border: 1px solid var(--color-border);
-  border-radius: 16px;
-  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  padding: 1.5rem;
+  border-radius: 20px;
+}
+
+.enter {
+  animation: cardIn 0.45s ease-out both;
+}
+
+.swapIn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  animation: swapIn 0.25s ease-out both;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(16px); }
+}
+
+@keyframes swapIn {
+  from { opacity: 0; transform: translateX(-8px); }
 }
 
 .cardHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .cardTitle {
-  font-size: 1.1rem;
-  color: var(--color-text-secondary);
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
 }
 
-/* AI Diagnosis Centerpiece */
-.diagnosisCard {
-  background: linear-gradient(180deg, rgba(16, 185, 129, 0.1) 0%, rgba(244, 244, 245, 0.9) 100%);
-  border: 1px solid var(--color-brand-emerald-glow);
-  box-shadow: 0 0 40px rgba(16, 185, 129, 0.08);
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-bottom: 1.5rem;
+.cardHint {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
 }
 
-.diagnosisCard.fault {
-  background: linear-gradient(180deg, rgba(239, 68, 68, 0.1) 0%, rgba(244, 244, 245, 0.9) 100%);
-  border-color: rgba(239, 68, 68, 0.3);
-  box-shadow: 0 0 40px rgba(239, 68, 68, 0.08);
+/* ── Top row: health + stats ─────────────────────────────────────────── */
+
+.topRow {
+  display: grid;
+  grid-template-columns: minmax(260px, 320px) 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
 }
 
-.confidenceScore {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  background: var(--color-bg);
-  padding: 0.25rem 0.75rem;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: bold;
-  color: var(--color-brand-emerald);
-  border: 1px solid var(--color-brand-emerald-glow);
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.stat {
+  justify-content: space-between;
+  min-height: 150px;
+  padding: 1.35rem 1.4rem;
+}
+
+.statLabel {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
-}
-
-.diagnosisCard.fault .confidenceScore {
-  color: var(--color-brand-red);
-  border-color: rgba(239, 68, 68, 0.3);
-}
-
-.diagnosisResult {
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  line-height: 1.1;
-}
-
-.diagnosisCard.fault .diagnosisResult {
-  color: var(--color-brand-red);
-}
-.diagnosisCard:not(.fault) .diagnosisResult {
-  color: var(--color-brand-emerald);
-}
-
-.diagnosisAction {
+  gap: 0.5rem;
+  font-size: 0.85rem;
   color: var(--color-text-secondary);
-  font-size: 1.05rem;
+}
+
+.statIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--color-brand-cyan) 10%, transparent);
+  color: var(--color-brand-cyan);
+  border: 1px solid var(--color-border);
 }
 
 .statValue {
-  font-size: 2.2rem;
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 2.1rem;
   font-weight: 700;
-  margin-top: 0.5rem;
+  letter-spacing: -0.02em;
   line-height: 1;
+  color: var(--color-text-primary);
 }
 
 .statUnit {
-  font-size: 1rem;
-  color: var(--color-text-secondary);
-  font-weight: 400;
+  margin-left: 0.3rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
 }
 
-/* Chart Container */
-.chartContainer {
-  height: 280px;
-  width: 100%;
+.statFoot {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+.statFoot strong {
+  font-weight: 600;
+}
+
+.up { color: var(--color-brand-emerald); }
+.down { color: var(--color-brand-red); }
+
+/* Health ring */
+.health {
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  text-align: center;
+}
+
+.ringWrap {
   position: relative;
+  width: 168px;
+  height: 168px;
 }
 
-/* Pipeline */
+.ringCenter {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ringValue {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.ringLabel {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.healthCaption {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  max-width: 240px;
+}
+
+/* ── Main grid ────────────────────────────────────────────────────────── */
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 1.25rem;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  min-width: 0;
+}
+
+.chartContainer {
+  height: 300px;
+  width: 100%;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.legendSwatch {
+  width: 18px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.legendDashed {
+  background: repeating-linear-gradient(90deg, var(--color-text-muted) 0 5px, transparent 5px 8px);
+}
+
+.gapStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.gapStrip strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+/* ── Diagnosis card ───────────────────────────────────────────────────── */
+
+.diagnosis {
+  gap: 1rem;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.diagnosis.healthy { border-color: color-mix(in srgb, var(--color-brand-emerald) 35%, transparent); background: linear-gradient(180deg, color-mix(in srgb, var(--color-brand-emerald) 9%, transparent), transparent 70%), var(--color-bg-secondary); }
+.diagnosis.warning { border-color: color-mix(in srgb, var(--color-brand-yellow) 40%, transparent); background: linear-gradient(180deg, color-mix(in srgb, var(--color-brand-yellow) 10%, transparent), transparent 70%), var(--color-bg-secondary); }
+.diagnosis.critical { border-color: color-mix(in srgb, var(--color-brand-red) 40%, transparent); background: linear-gradient(180deg, color-mix(in srgb, var(--color-brand-red) 10%, transparent), transparent 70%), var(--color-bg-secondary); }
+
+.diagTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.diagEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.confidence {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+}
+
+.diagTitle {
+  font-size: 1.6rem;
+  line-height: 1.15;
+}
+
+.healthy .diagTitle { color: var(--color-brand-emerald); }
+.warning .diagTitle { color: var(--color-brand-yellow); }
+.critical .diagTitle { color: var(--color-brand-red); }
+
+.diagSummary {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+}
+
+.watchNote {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.65rem 0.8rem;
+  border-radius: 12px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+}
+
+.factLabel {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.factValue {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.action {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.9rem 1rem;
+  border-radius: 14px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+}
+
+.actionIcon {
+  flex-shrink: 0;
+  display: inline-flex;
+  padding: 0.45rem;
+  border-radius: 10px;
+}
+
+.actionIcon.homeowner { color: var(--color-brand-emerald); background: color-mix(in srgb, var(--color-brand-emerald) 12%, transparent); }
+.actionIcon.technician { color: var(--color-brand-red); background: color-mix(in srgb, var(--color-brand-red) 12%, transparent); }
+.actionIcon.none { color: var(--color-brand-cyan); background: color-mix(in srgb, var(--color-brand-cyan) 12%, transparent); }
+
+.actionAudience {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.actionText {
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--color-text-primary);
+}
+
+.evidenceList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.evidenceList li {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--color-text-secondary);
+}
+
+.evidenceList li::before {
+  content: '';
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  margin-top: 0.45rem;
+  border-radius: 50%;
+  background: var(--color-brand-cyan);
+}
+
+/* ── Pipeline ─────────────────────────────────────────────────────────── */
+
 .pipeline {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  margin-top: 1rem;
-  padding: 1.5rem;
-  background: var(--color-bg);
-  border-radius: 12px;
-  border: 1px solid var(--color-border);
+  gap: 0.25rem;
 }
 
 .pipeStep {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.85rem;
-  color: var(--color-text-secondary);
-  font-weight: 500;
+  gap: 0.4rem;
+  flex: 0 0 auto;
+  width: 72px;
+  text-align: center;
 }
 
-.pipeStep.active {
+.pipeIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
   color: var(--color-brand-emerald);
+  background: color-mix(in srgb, var(--color-brand-emerald) 10%, transparent);
+  border: 1px solid var(--color-brand-emerald-glow);
 }
-.diagnosisCard.fault + .pipeline .pipeStep.active {
-  color: var(--color-brand-red);
+
+.pipeStep.warn .pipeIcon {
+  color: var(--color-brand-yellow);
+  background: color-mix(in srgb, var(--color-brand-yellow) 10%, transparent);
+  border-color: color-mix(in srgb, var(--color-brand-yellow) 30%, transparent);
+}
+
+.pipeLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.pipeSub {
+  font-size: 0.68rem;
+  color: var(--color-text-muted);
 }
 
 .pipeLine {
   flex: 1;
   height: 2px;
+  margin-top: 20px;
   background: var(--color-border);
-  margin: 0 1rem;
   position: relative;
   overflow: hidden;
+  border-radius: 2px;
 }
 
 .pipeLine::after {
   content: '';
   position: absolute;
   top: 0;
-  left: -100%;
+  left: -50%;
   width: 50%;
   height: 100%;
-  background: var(--color-brand-emerald);
-  animation: dataFlow 1.5s linear infinite;
-}
-.diagnosisCard.fault + .pipeline .pipeLine::after {
-  background: var(--color-brand-red);
+  background: var(--gradient-emerald-cyan);
+  animation: flow 1.6s linear infinite;
 }
 
-@keyframes dataFlow {
-  100% { left: 200%; }
+@keyframes flow {
+  to { left: 100%; }
 }
 
-/* Multi-site grid */
+/* ── Sites + history ──────────────────────────────────────────────────── */
+
 .siteGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.85rem;
 }
 
 .siteCard {
-  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1rem 1.1rem;
+  border-radius: 14px;
   border: 1px solid var(--color-border);
-  border-radius: 12px;
-  padding: 1.25rem;
-  transition: border-color 0.2s ease;
+  background: var(--color-bg);
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
-.siteCard:hover {
-  border-color: var(--color-border-hover);
+button.siteCard {
+  cursor: pointer;
+}
+
+button.siteCard:hover {
+  border-color: var(--color-brand-cyan);
+  transform: translateY(-2px);
+}
+
+.siteCard[aria-pressed='true'] {
+  border-color: var(--color-brand-cyan);
+  box-shadow: 0 0 0 3px var(--color-brand-cyan-glow);
 }
 
 .siteHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  gap: 0.5rem;
 }
 
 .siteName {
   font-weight: 600;
-  font-size: 1.05rem;
+  font-size: 0.92rem;
 }
 
-.siteStatus {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-}
-.siteStatus.healthy { background: var(--color-brand-emerald); box-shadow: 0 0 8px var(--color-brand-emerald); }
-.siteStatus.warning { background: var(--color-brand-yellow); box-shadow: 0 0 8px var(--color-brand-yellow); }
-.siteStatus.critical { background: var(--color-brand-red); box-shadow: 0 0 8px var(--color-brand-red); }
-
-.siteMetrics {
+.siteMeta {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  font-size: 0.9rem;
+  gap: 0.25rem 0.75rem;
+  font-size: 0.8rem;
   color: var(--color-text-secondary);
 }
 
-/* Nav inside dashboard */
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot.healthy { background: var(--color-brand-emerald); box-shadow: 0 0 8px var(--color-brand-emerald); }
+.dot.warning { background: var(--color-brand-yellow); box-shadow: 0 0 8px var(--color-brand-yellow); }
+.dot.critical { background: var(--color-brand-red); box-shadow: 0 0 8px var(--color-brand-red); }
+.dot.pending { background: var(--color-text-muted); }
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.timelineItem {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.timelineIcon {
+  display: inline-flex;
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+.timelineIcon.success { color: var(--color-brand-emerald); background: color-mix(in srgb, var(--color-brand-emerald) 12%, transparent); }
+.timelineIcon.warning { color: var(--color-brand-yellow); background: color-mix(in srgb, var(--color-brand-yellow) 12%, transparent); }
+.timelineIcon.critical { color: var(--color-brand-red); background: color-mix(in srgb, var(--color-brand-red) 12%, transparent); }
+.timelineIcon.info { color: var(--color-brand-cyan); background: color-mix(in srgb, var(--color-brand-cyan) 12%, transparent); }
+
+.timelineTitle {
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.timelineDesc {
+  font-size: 0.78rem;
+  color: var(--color-text-secondary);
+}
+
+/* ── Loading / error ──────────────────────────────────────────────────── */
+
+.skeleton {
+  border-radius: 20px;
+  background: linear-gradient(90deg, var(--color-bg-secondary) 25%, var(--color-bg-tertiary) 50%, var(--color-bg-secondary) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+.errorCard {
+  align-items: flex-start;
+  gap: 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--color-brand-red) 35%, transparent);
+}
+
+.errorTitle {
+  font-size: 1.1rem;
+  color: var(--color-brand-red);
+}
+
+.errorText {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────── */
+
+@media (max-width: 1200px) {
+  .statsRow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 1024px) {
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  .topRow { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .dashboard { padding: 1.25rem 1rem 2rem; }
+  .header { align-items: flex-start; }
+  .controls { width: 100%; }
+  .statsRow { gap: 0.85rem; }
+  .stat { min-height: 128px; padding: 1.1rem; }
+  .statValue { font-size: 1.7rem; }
+  .card { padding: 1.15rem; }
+  .facts { grid-template-columns: 1fr; }
+  .chartContainer { height: 240px; }
+  .pipeStep { width: 56px; }
+  .pipeSub { display: none; }
+}
+
+@media (max-width: 420px) {
+  .statsRow { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enter,
+  .swapIn,
+  .live .eyebrowDot,
+  .pipeLine::after,
+  .spin,
+  .skeleton { animation: none; }
+}
+
+/* ── Legacy nav (DashboardNav) ────────────────────────────────────────── */
+
 .dashNav {
   position: fixed;
   top: 0;
@@ -353,6 +894,7 @@
   color: var(--color-text-primary);
   text-decoration: none;
 }
+
 .logo span {
   color: var(--color-brand-emerald);
 }
@@ -361,11 +903,13 @@
   display: flex;
   gap: 2rem;
 }
+
 .navLink {
   color: var(--color-text-secondary);
   font-size: 0.9rem;
   font-weight: 500;
 }
+
 .navLink.active {
   color: var(--color-text-primary);
 }

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Fix request",
+  "description": "One defect, one owner. Written by validator or ux-reviewer to docs/qa/fix-requests/<id>.json; executed by fix-agent; promoted by rule-curator when rule_proposal is set.",
+  "type": "object",
+  "required": ["id", "origin", "owner", "file", "defect", "status"],
+  "properties": {
+    "id":         { "type": "string", "pattern": "^FR-[0-9]{3,}$" },
+    "origin":     { "enum": ["validator", "ux-reviewer", "user"] },
+    "owner":      { "enum": ["ui-designer", "api-builder"] },
+    "file":       { "type": "string", "description": "repo-relative path of the file to change" },
+    "element":    { "type": "string", "description": "component name, selector or line" },
+    "viewport":   { "type": "string", "description": "e.g. 1280x720 dark" },
+    "screenshot": { "type": "string" },
+    "gate":       { "type": "string" },
+    "defect":     { "type": "string", "description": "one sentence naming the element and what a person sees" },
+    "rule":       { "type": "string", "description": "rule id violated, e.g. U2" },
+    "status":     { "enum": ["open", "fixed", "needs-attention", "wont-fix"] },
+    "changed":    { "type": "array", "items": { "type": "string" } },
+    "rule_proposal": { "type": "string" },
+    "attempt":    { "type": "integer", "minimum": 1 }
+  }
+}

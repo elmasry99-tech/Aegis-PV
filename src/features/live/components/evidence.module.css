@@ -1,0 +1,377 @@
+/* Evidence page — same glass language as the dashboard. Spacing lives here because the
+   global `* { margin; padding }` reset beats Tailwind's layered utilities. */
+
+.page {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem 4rem;
+}
+
+.page * {
+  margin: 0;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.topActions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.back,
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.back:hover,
+.button:hover {
+  border-color: var(--color-brand-cyan);
+  color: var(--color-brand-cyan);
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.back:focus-visible,
+.button:focus-visible {
+  outline: 2px solid var(--color-brand-cyan);
+  outline-offset: 2px;
+}
+
+.spin {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  align-self: flex-start;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--color-brand-cyan);
+  background: color-mix(in srgb, var(--color-brand-cyan) 10%, transparent);
+  border: 1px solid var(--color-brand-cyan-glow);
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.lead {
+  max-width: 680px;
+  color: var(--color-text-secondary);
+  font-size: 1.02rem;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 20px;
+}
+
+.enter {
+  animation: cardIn 0.4s ease-out both;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(16px); }
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cardTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.badgeAi { color: var(--color-brand-cyan); background: color-mix(in srgb, var(--color-brand-cyan) 12%, transparent); border-color: var(--color-brand-cyan-glow); }
+.badgeRules { color: var(--color-brand-yellow); background: color-mix(in srgb, var(--color-brand-yellow) 12%, transparent); border-color: color-mix(in srgb, var(--color-brand-yellow) 30%, transparent); }
+
+.runMeta {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.metaLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.metaValue {
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  background: color-mix(in srgb, var(--color-brand-yellow) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-brand-yellow) 25%, transparent);
+}
+
+.note svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--color-brand-yellow);
+}
+
+.diagRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 1.5rem;
+}
+
+.diagRow > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.diagTitle {
+  font-size: 1.5rem;
+}
+
+.muted {
+  color: var(--color-text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.action {
+  font-size: 0.92rem;
+}
+
+.bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.bar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.barTop {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+}
+
+.barLabelStrong {
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.barTrack {
+  height: 8px;
+  border-radius: 9999px;
+  background: var(--color-bg-tertiary);
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  border-radius: 9999px;
+  background: var(--gradient-emerald-cyan);
+  transform-origin: left center;
+  animation: barIn 0.8s ease-out both;
+}
+
+@keyframes barIn {
+  from { transform: scaleX(0); }
+}
+
+.small {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.subhead {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding-left: 1.1rem;
+  list-style: disc;
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.kv {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem 1.5rem;
+}
+
+.kvRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.88rem;
+}
+
+.kvRow dt {
+  color: var(--color-text-secondary);
+}
+
+.kvRow dd {
+  font-weight: 600;
+  text-align: right;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.table th,
+.table td {
+  padding: 0.45rem 0.8rem;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.table th:first-child,
+.table td:first-child {
+  text-align: left;
+}
+
+.table thead {
+  background: var(--color-bg-secondary);
+  color: var(--color-text-muted);
+}
+
+.table tbody tr + tr {
+  border-top: 1px solid var(--color-border);
+}
+
+.raw summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.raw pre {
+  max-height: 420px;
+  overflow: auto;
+  padding: 1rem;
+  border-radius: 12px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.error {
+  color: var(--color-brand-red);
+}
+
+.skeleton {
+  height: 480px;
+  border-radius: 20px;
+  background: linear-gradient(90deg, var(--color-bg-secondary) 25%, var(--color-bg-tertiary) 50%, var(--color-bg-secondary) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@media (max-width: 800px) {
+  .page { padding: 1.25rem 1rem 3rem; }
+  .runMeta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .diagRow { grid-template-columns: 1fr; }
+  .kv { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spin, .skeleton, .enter, .barFill { animation: none; }
+}

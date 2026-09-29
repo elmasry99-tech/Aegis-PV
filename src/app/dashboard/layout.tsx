@@ -16,13 +16,14 @@ export default function DashboardLayout({
   const pathname = usePathname();
   const router = useRouter();
 
+  // Public preview pages: no login, no sidebar. The evidence page belongs to the preview dashboard.
+  const isPreview = pathname === '/dashboard' || pathname === '/dashboard/evidence';
+
   useEffect(() => {
-    if (pathname !== '/dashboard' && !isAuthenticated()) {
+    if (!isPreview && !isAuthenticated()) {
       router.push('/login');
     }
-  }, [pathname, router]);
-
-  const isPreview = pathname === '/dashboard';
+  }, [isPreview, router]);
 
   return (
     <ScenarioProvider>
